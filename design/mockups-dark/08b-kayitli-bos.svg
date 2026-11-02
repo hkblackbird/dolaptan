@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="800" viewBox="0 0 360 800">
+<rect x="0" y="0" width="360" height="800" rx="0" fill="#000000"/>
+<g id="durum-cubugu">
+<text x="41.6" y="37" font-family="Inter" font-size="16" font-weight="600" fill="#FFFFFF">9:41</text>
+<rect x="268.0" y="31" width="3" height="3" rx="0.8" fill="#FFFFFF"/><rect x="272.5" y="29" width="3" height="5" rx="0.8" fill="#FFFFFF"/><rect x="277.0" y="27" width="3" height="7" rx="0.8" fill="#FFFFFF"/><rect x="281.5" y="25" width="3" height="9" rx="0.8" fill="#FFFFFF"/><path d="M292 28 Q299.5 21 307 28 M295 31 Q299.5 27 304 31" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/><circle cx="299.5" cy="34" r="1.5" fill="#FFFFFF"/><rect x="312" y="26" width="23" height="11" rx="3" fill="none" stroke="#FFFFFF" stroke-opacity="0.45"/><rect x="314" y="28" width="17" height="7" rx="1.5" fill="#FFFFFF"/><rect x="336" y="29.5" width="1.6" height="4" rx="0.8" fill="#FFFFFF" fill-opacity="0.45"/>
+</g>
+<text x="16.0" y="142" font-family="Inter" font-size="34" font-weight="700" fill="#FFFFFF">Kayıtlı Tarifler</text>
+<g id="sf-bookmark" transform="translate(180.0 300) scale(2.0)"><path d="M-6 -9 H6 V10 L0 5 L-6 10 Z" fill="none" stroke="#AEAEB2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="94.2" y="352" font-family="Inter" font-size="22" font-weight="700" fill="#FFFFFF">Kayıtlı Tarif Yok</text>
+<text x="82.3" y="380" font-family="Inter" font-size="17" font-weight="400" fill="#AEAEB2">Beğendiğin tarifi kaydet,</text>
+<text x="85.6" y="402" font-family="Inter" font-size="17" font-weight="400" fill="#AEAEB2">internet olmadan da aç.</text>
+<g id="sekme-cubugu">
+<rect x="21" y="717" width="318" height="62" rx="31" fill="#2C2C2E" stroke="#3A3A3C" stroke-width="0.5"/>
+</g>
+<g id="sekme-ana-sayfa">
+<rect x="25" y="721" width="98" height="54" rx="27" fill="#000000" fill-opacity="0"/>
+<g id="sf-house.fill" transform="translate(74 739) scale(1.0)"><path d="M-9 -1 L0 -9 L9 -1 V9 H3 V3 H-3 V9 H-9 Z" fill="#FFFFFF"/></g>
+<text x="49.6" y="766" font-family="Inter" font-size="10" font-weight="500" fill="#FFFFFF">Ana Sayfa</text>
+</g>
+<g id="sekme-kayitli">
+<rect x="131" y="721" width="98" height="54" rx="27" fill="#3A3A3C"/>
+<g id="sf-bookmark.fill" transform="translate(180 739) scale(1.0)"><path d="M-6 -9 H6 V10 L0 5 L-6 10 Z" fill="#FF8A65"/></g>
+<text x="165.0" y="766" font-family="Inter" font-size="10" font-weight="600" fill="#FF8A65">Kayıtlı</text>
+</g>
+<g id="sekme-liste">
+<rect x="237" y="721" width="98" height="54" rx="27" fill="#000000" fill-opacity="0"/>
+<g id="sf-list.bullet" transform="translate(286 739) scale(1.0)"><path d="M-3 -6 H9 M-3 0 H9 M-3 6 H9" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="-6" r="1.4" fill="#FFFFFF"/><circle cx="-8" cy="0" r="1.4" fill="#FFFFFF"/><circle cx="-8" cy="6" r="1.4" fill="#FFFFFF"/></g>
+<text x="274.6" y="766" font-family="Inter" font-size="10" font-weight="500" fill="#FFFFFF">Liste</text>
+</g>
+<rect id="ana-ekran-cubugu" x="113" y="787" width="134" height="5" rx="2.5" fill="#FFFFFF"/>
+</svg>

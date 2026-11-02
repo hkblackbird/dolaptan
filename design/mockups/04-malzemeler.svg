@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="800" viewBox="0 0 360 800">
+<rect x="0" y="0" width="360" height="800" rx="0" fill="#F2F2F7"/>
+<g id="durum-cubugu">
+<text x="41.6" y="37" font-family="Inter" font-size="16" font-weight="600" fill="#000000">9:41</text>
+<rect x="268.0" y="31" width="3" height="3" rx="0.8" fill="#000000"/><rect x="272.5" y="29" width="3" height="5" rx="0.8" fill="#000000"/><rect x="277.0" y="27" width="3" height="7" rx="0.8" fill="#000000"/><rect x="281.5" y="25" width="3" height="9" rx="0.8" fill="#000000"/><path d="M292 28 Q299.5 21 307 28 M295 31 Q299.5 27 304 31" fill="none" stroke="#000000" stroke-width="1.8" stroke-linecap="round"/><circle cx="299.5" cy="34" r="1.5" fill="#000000"/><rect x="312" y="26" width="23" height="11" rx="3" fill="none" stroke="#000000" stroke-opacity="0.45"/><rect x="314" y="28" width="17" height="7" rx="1.5" fill="#000000"/><rect x="336" y="29.5" width="1.6" height="4" rx="0.8" fill="#000000" fill-opacity="0.45"/>
+</g>
+<g id="geri">
+<rect x="16" y="58" width="44" height="44" rx="22" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="0.5"/>
+<g id="sf-chevron.backward" transform="translate(38 80) scale(1.0)"><path d="M4 -8 L-4 0 L4 8" fill="none" stroke="#000000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<text x="16.0" y="142" font-family="Inter" font-size="34" font-weight="700" fill="#000000">Malzemeler</text>
+<text x="16.0" y="170" font-family="Inter" font-size="17" font-weight="400" fill="#6C6C70">Yanlış olanı sola kaydırıp sil.</text>
+<text x="20.0" y="208" font-family="Inter" font-size="17" font-weight="600" fill="#000000">8 malzeme bulundu</text>
+<rect x="16" y="220" width="328" height="412" rx="20" fill="#FFFFFF"/>
+<rect x="32" y="279.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="323.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="367.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="411.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="455.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="499.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="543.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="587.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<g id="satir-yogurt">
+<text x="32.0" y="246" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Yoğurt</text>
+<text x="32.0" y="266" font-family="Inter" font-size="13" font-weight="400" fill="#6C6C70">Emin değiliz, kontrol et</text>
+<g id="sf-questionmark.circle" transform="translate(320 250) scale(1.0)"><circle cx="0" cy="0" r="9" fill="none" stroke="#6C6C70" stroke-width="1.7"/><path d="M-3 -3 Q-3 -6 0 -6 Q3 -6 3 -3 Q3 -1 0 0 V2" fill="none" stroke="#6C6C70" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="5" r="1.4" fill="#6C6C70"/></g>
+</g>
+<g id="satir-2">
+<text x="32.0" y="308" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Yumurta</text>
+</g>
+<g id="satir-3">
+<text x="32.0" y="352" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Domates</text>
+<rect x="270" y="324" width="74" height="44" rx="0" fill="#E9152D"/>
+<text x="297.4" y="352" font-family="Inter" font-size="17" font-weight="400" fill="#FFFFFF">Sil</text>
+</g>
+<g id="satir-4">
+<text x="32.0" y="396" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Biber</text>
+</g>
+<g id="satir-5">
+<text x="32.0" y="440" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Soğan</text>
+</g>
+<g id="satir-6">
+<text x="32.0" y="484" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Peynir</text>
+</g>
+<g id="satir-7">
+<text x="32.0" y="528" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Patates</text>
+</g>
+<g id="satir-8">
+<text x="32.0" y="572" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Maydanoz</text>
+</g>
+<g id="satir-malzeme-ekle">
+<rect x="16" y="588" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<g id="sf-plus" transform="translate(42 610) scale(1.0)"><path d="M0 -8 V8 M-8 0 H8" fill="none" stroke="#B3401E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="60.0" y="616" font-family="Inter" font-size="17" font-weight="400" fill="#B3401E">Malzeme Ekle</text>
+</g>
+<g id="btn-devam">
+<rect x="16" y="666" width="328" height="50" rx="25" fill="#B3401E"/>
+<text x="141.0" y="697" font-family="Inter" font-size="17" font-weight="600" fill="#FFFFFF">Devam Et</text>
+</g>
+<rect id="ana-ekran-cubugu" x="113" y="787" width="134" height="5" rx="2.5" fill="#000000"/>
+</svg>

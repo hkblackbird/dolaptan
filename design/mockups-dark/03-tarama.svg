@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="800" viewBox="0 0 360 800">
+<rect x="0" y="0" width="360" height="800" rx="0" fill="#000000"/>
+<rect x="0" y="0" width="360" height="800" rx="0" fill="#000000"/>
+<g id="durum-cubugu">
+<text x="41.6" y="37" font-family="Inter" font-size="16" font-weight="600" fill="#FFFFFF">9:41</text>
+<rect x="268.0" y="31" width="3" height="3" rx="0.8" fill="#FFFFFF"/><rect x="272.5" y="29" width="3" height="5" rx="0.8" fill="#FFFFFF"/><rect x="277.0" y="27" width="3" height="7" rx="0.8" fill="#FFFFFF"/><rect x="281.5" y="25" width="3" height="9" rx="0.8" fill="#FFFFFF"/><path d="M292 28 Q299.5 21 307 28 M295 31 Q299.5 27 304 31" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/><circle cx="299.5" cy="34" r="1.5" fill="#FFFFFF"/><rect x="312" y="26" width="23" height="11" rx="3" fill="none" stroke="#FFFFFF" stroke-opacity="0.45"/><rect x="314" y="28" width="17" height="7" rx="1.5" fill="#FFFFFF"/><rect x="336" y="29.5" width="1.6" height="4" rx="0.8" fill="#FFFFFF" fill-opacity="0.45"/>
+</g>
+<rect id="kamera-onizleme" x="0" y="110" width="360" height="480" rx="0" fill="#1C1C1E"/>
+<g id="btn-kapat">
+<rect x="16" y="58" width="44" height="44" rx="22" fill="#3A3A3C"/>
+<g id="sf-xmark" transform="translate(38 80) scale(1.0)"><path d="M-6 -6 L6 6 M6 -6 L-6 6" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<text x="129.1" y="622" font-family="Inter" font-size="13" font-weight="400" fill="#FFFFFF">Rafları kadraja al</text>
+<g id="btn-galeri">
+<rect x="40" y="678" width="44" height="44" rx="10" fill="#3A3A3C"/>
+<g id="sf-photo.on.rectangle" transform="translate(62 700) scale(1.0)"><path d="M-7 -9 H10 V4 M-10 -6 H7 V8 H-10 Z M-10 6 L-4 0 L1 5 L3 3 L7 7" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<g id="btn-deklansor">
+<rect x="143" y="663" width="74" height="74" rx="37" fill="#000000" fill-opacity="0"/>
+<circle cx="180" cy="700" r="35" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+<circle cx="180" cy="700" r="29" fill="#FFFFFF"/>
+</g>
+<rect id="ana-ekran-cubugu" x="113" y="787" width="134" height="5" rx="2.5" fill="#FFFFFF"/>
+</svg>
