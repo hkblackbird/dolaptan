@@ -30,9 +30,10 @@ MEMBER_1 = "[AD SOYAD 1]"
 MEMBER_2 = "[AD SOYAD 2]"
 TEAM = f"{MEMBER_1}, {MEMBER_2}"
 TEAM_NO = "[TAKIM NO]"
-EVIDENCE = ("<b>[TO FILL: interview 5-10 people who cook at home. Write how many people you spoke to, how many "
-            "struggle to decide what to cook, how often this happens each week, and one short quote. "
-            "Do not submit this placeholder.]</b>")
+EVIDENCE = ("<b>[TO FILL: interview 5-10 people who cook at home, including people who share a flat. Write how "
+            "many you spoke to, how many struggle to decide what to cook and how often, how they share shopping today "
+            "(for example a group chat), what food went off at home last month, and one short quote. Do not submit "
+            "this placeholder.]</b>")
 
 pdfmetrics.registerFont(TTFont("Body", str(FONTS / "Inter-Regular.ttf")))
 pdfmetrics.registerFont(TTFont("Bold", str(FONTS / "Inter-Bold.ttf")))
@@ -136,19 +137,20 @@ def design_justification():
                  ["Body", "17 pt regular", "Rows, steps, buttons"],
                  ["Footnote", "13 pt regular", "Times, servings, list footers"]]
     build("design-justification.pdf", header("Design Justification") + [
-        P("<b>Dolaptan</b> turns a photo of a fridge or cupboard into three Turkish recipes. People use it while "
-          "tired, in a hurry, or with one free hand in the kitchen. The design aims for few decisions, readable "
+        P("<b>Dolaptan</b> is a shared kitchen for people who live together: one pantry everyone sees, Turkish "
+          "recipes that use what is about to go off, and a shared shopping list. People use it while tired, in a "
+          "hurry, or with one free hand in the kitchen. The design aims for few decisions, readable "
           "text, and clear control over what the AI suggests. It follows Apple's Human Interface Guidelines for "
           "iOS 26, so the app feels familiar to people who use Notes, Reminders or Health."),
         Paragraph("Visual language", H2),
         *bullets([
             "<b>Standard iOS patterns:</b> large-title navigation bars, a floating tab bar with three tabs "
-            "(Ana Sayfa, Kayıtlı, Liste), inset grouped lists, a sheet for Preferences, segmented controls for time "
+            "(Dolap, Tarifler, Liste), inset grouped lists, a sheet for Preferences, segmented controls for time "
             "and servings, switches for allergies, and swipe to delete.",
-            "<b>Rows instead of cards:</b> ingredients, recipes and list items are list rows, which are easier to "
+            "<b>Rows instead of cards:</b> pantry items, recipes and list items are list rows, which are easier to "
             "scan and edit than stacked cards.",
-            "<b>One emphasis per screen:</b> at most one filled button per screen (for example, Fotoğraf Çek or "
-            "Devam Et). Other actions are plain text buttons.",
+            "<b>One emphasis per screen:</b> at most one filled button per screen (for example, Ne Pişirsem? or "
+            "Dolaba Ekle). Other actions are plain text buttons.",
             "<b>Liquid Glass only for navigation:</b> following the HIG, the glass treatment is limited to the tab "
             "bar and the bar buttons. Content stays on solid system backgrounds. There are no gradients, large "
             "shadows or decorative shapes.",
@@ -189,12 +191,12 @@ def design_justification():
           "its own color tokens, and both versions pass the same checks."),
         Paragraph("Accessibility and how the design supports users", H2),
         *bullets([
-            "Color is never the only signal: checked items use a filled circle with a check mark, uncertain "
-            "ingredients have a symbol and a sentence, and switches change position as well as color.",
+            "Color is never the only signal: pantry states are words (Var, Azaldı, Bitti), checked items use a "
+            "filled circle with a check mark, and uncertain items have a symbol and a sentence.",
             "The app will support Dynamic Type, and it will label icon buttons and the delete action for VoiceOver and TalkBack.",
             "AI can make mistakes, so detected ingredients appear in an editable list before any recipe is "
             "generated, and uncertain items are listed first. The allergen note stays under the allergy switches.",
-            "Saved recipes open offline, and the Offline screen explains what still works.",
+            "The pantry and saved recipes open offline, and a banner explains that recipe suggestions need internet.",
         ]),
     ])
 
@@ -211,20 +213,20 @@ def user_flow():
     c.setFillColor(MUTED)
     c.setFont("Body", 8.5)
     c.drawString(30, height - 49, f"Dolaptan · MTM4681 Mobile Programming · Milestone · Team {TEAM_NO} · {TEAM}")
-
-    bw, bh, dw, dh = 114, 46, 114, 70
-    xs = [30 + 57 + i * 133.5 for i in range(6)]  # column centres
-    ya, ya2, yb, yb2, yc, yc2 = 456, 382, 306, 232, 148, 76
     c.setFillColor(INK)
     c.setFont("Bold", 8.5)
-    c.drawString(30, height - 66, "Main path:")
+    c.drawString(30, height - 66, "Core loop:")
     c.setFont("Body", 8.5)
-    c.drawString(30 + pdfmetrics.stringWidth("Main path: ", "Bold", 8.5), height - 66,
-                 "Home → Scan → Ingredients → Preferences → Recipe suggestions → Recipe detail → Saved recipes. "
-                 "Diamonds mark decision points.")
-    nodes = {}
-    labels = []
-    segments = []
+    c.drawString(30 + pdfmetrics.stringWidth("Core loop: ", "Bold", 8.5), height - 66,
+                 "Pantry → recipes that use what expires first → Cooked → missing and finished items go to the "
+                 "shared list → Bought → back in the pantry.")
+
+    bw, bh, dw, dh = 70, 40, 70, 54
+    pitch = (width - 60 - bw) / 8
+    xs = [30 + bw / 2 + i * pitch for i in range(9)]
+    lanes = {1: 448, 2: 300, 3: 152}
+    drop = 64
+    nodes, segments = {}, []
 
     def wrap(text, limit, font, size):
         lines, cur = [], ""
@@ -237,24 +239,22 @@ def user_flow():
                 cur = trial
         return lines + [cur]
 
-    def label(cx, cy, title, detail=None, limit=102):
-        lines = [("Bold", t) for t in wrap(title, limit, "Bold", 8)]
-        if detail:
-            lines += [("Body", t) for t in wrap(detail, limit, "Body", 7.2)]
-        y = cy + (len(lines) - 1) * 4.8 - 2.8
+    def label(cx, cy, title, limit):
+        lines = wrap(title, limit, "Bold", 7.4)
+        y = cy + (len(lines) - 1) * 4.5 - 2.6
         c.setFillColor(INK)
-        for font, line in lines:
-            c.setFont(font, 8 if font == "Bold" else 7.2)
+        c.setFont("Bold", 7.4)
+        for line in lines:
             c.drawCentredString(cx, y, line)
-            y -= 9.6
+            y -= 9
 
-    def box(key, x, y, title, detail=None, fill="#FFFFFF", stroke=MOCK["primary"]):
-        nodes[key] = (x, y, bw / 2, bh / 2)
+    def box(key, x, y, title, fill="#FFFFFF", stroke=MOCK["primary"], h=bh):
+        nodes[key] = (x, y, bw / 2, h / 2)
         c.setFillColor(colors.HexColor(fill))
         c.setStrokeColor(colors.HexColor(stroke))
         c.setLineWidth(1)
-        c.roundRect(x - bw / 2, y - bh / 2, bw, bh, 7, fill=1)
-        label(x, y, title, detail)
+        c.roundRect(x - bw / 2, y - h / 2, bw, h, 6, fill=1)
+        label(x, y, title, bw - 10)
 
     def diamond(key, x, y, title):
         nodes[key] = (x, y, dw / 2, dh / 2)
@@ -268,7 +268,7 @@ def user_flow():
         c.setStrokeColor(WARN)
         c.setLineWidth(1)
         c.drawPath(p, fill=1)
-        label(x, y, title, limit=66)
+        label(x, y, title, 42)
 
     def edge(points, text=None, at=None):
         c.setStrokeColor(INK)
@@ -277,28 +277,26 @@ def user_flow():
             c.line(*a, *b)
             segments.append((a, b))
         (x1, y1), (x2, y2) = points[-2], points[-1]
-        d = 5.5
         c.setFillColor(INK)
         p = c.beginPath()
         p.moveTo(x2, y2)
         if x1 == x2:
             s = 1 if y2 > y1 else -1
-            p.lineTo(x2 - 3, y2 - s * d)
-            p.lineTo(x2 + 3, y2 - s * d)
+            p.lineTo(x2 - 3, y2 - s * 5.5)
+            p.lineTo(x2 + 3, y2 - s * 5.5)
         else:
             s = 1 if x2 > x1 else -1
-            p.lineTo(x2 - s * d, y2 - 3)
-            p.lineTo(x2 - s * d, y2 + 3)
+            p.lineTo(x2 - s * 5.5, y2 - 3)
+            p.lineTo(x2 - s * 5.5, y2 + 3)
         p.close()
         c.drawPath(p, fill=1, stroke=0)
         if text:
-            tw = pdfmetrics.stringWidth(text, "Bold", 7.4)
+            tw = pdfmetrics.stringWidth(text, "Bold", 7)
             c.setFillColor(colors.white)
-            c.rect(at[0] - 1.5, at[1] - 2, tw + 3, 10, fill=1, stroke=0)
+            c.rect(at[0] - 1, at[1] - 2, tw + 2, 9, fill=1, stroke=0)
             c.setFillColor(WARN)
-            c.setFont("Bold", 7.4)
+            c.setFont("Bold", 7)
             c.drawString(*at, text)
-            labels.append((at[0], at[1] - 2, tw, 10))
 
     def side(key, where):
         x, y, rx, ry = nodes[key]
@@ -306,80 +304,72 @@ def user_flow():
 
     screen, system, start = "#FFFFFF", MOCK["ok_soft"], MOCK["soft"]
 
-    # Row A: entry, left to right.
-    box("open", xs[0], ya, "Open app", fill=start)
-    diamond("auth", xs[1], ya, "Signed in?")
-    box("home", xs[2], ya, "Home")
-    diamond("online", xs[3], ya, "Online?")
-    diamond("input", xs[4], ya, "How to add ingredients?")
-    box("scan", xs[5], ya, "Scan", "Photo, scan animation")
-    box("login", xs[1], ya2, "Login", "Sign in or create account")
-    box("offline", xs[3], ya2, "Offline status", "Saved recipes still open")
+    def lane(n, title, items):
+        y = lanes[n]
+        c.setFillColor(MUTED)
+        c.setFont("Bold", 8.5)
+        c.drawString(30, y + 42, title)
+        keys = []
+        for col, kind, text in items:
+            key = f"{n}-{col}"
+            if kind == "d":
+                diamond(key, xs[col], y, text)
+            else:
+                fill, stroke = {"s": (screen, MOCK["primary"]), "a": (system, MOCK["ok"]),
+                                "p": (start, MOCK["primary"])}[kind]
+                box(key, xs[col], y, text, fill, stroke)
+            keys.append(key)
+        return keys
 
-    # Row B: AI path, right to left.
-    diamond("found", xs[5], yb, "Ingredients found?")
-    box("edit", xs[4], yb, "Ingredients", "Remove, fix, add items")
-    box("prefs", xs[3], yb, "Preferences", "Time, servings, allergies")
-    box("gen", xs[2], yb, "AI generates 3 recipes", fill=system, stroke=MOCK["ok"])
-    diamond("ok", xs[1], yb, "Request OK?")
-    box("list", xs[0], yb, "Recipe suggestions", "Compare 3 cards")
-    box("manual", xs[5], yb2, "Nothing detected", "Type items by hand")
-    box("error", xs[1], yb2, "Error message", "Offer retry")
+    def chain(keys, labels=None):
+        labels = labels or {}
+        for a, b in zip(keys, keys[1:]):
+            pa = side(a, "r")
+            text = labels.get(a)
+            edge([pa, side(b, "l")], text, (pa[0] + 3, pa[1] + 3) if text else None)
 
-    # Row C: outcome, left to right.
-    box("detail", xs[0], yc, "Recipe detail")
-    diamond("missing", xs[1], yc, "Missing items?")
-    box("shop", xs[2], yc, "Shopping list", "Syncs live to household", fill=system, stroke=MOCK["ok"])
-    diamond("save", xs[3], yc, "Save recipe?")
-    box("saved", xs[4], yc, "Saved recipes", "Stored on device, opens offline", fill=system, stroke=MOCK["ok"])
-    box("end", xs[5], yc, "Back to Home", fill=start)
+    def branch(src, col, n, title, kind="s", text="No"):
+        y = lanes[n] - drop
+        key = f"{n}-b{col}"
+        fill, stroke = {"s": (screen, MOCK["primary"]), "a": (system, MOCK["ok"])}[kind]
+        box(key, xs[col], y, title, fill, stroke, h=34)
+        p = side(src, "b")
+        edge([p, side(key, "t")], text, (p[0] + 4, p[1] - 10))
+        return key
 
-    def h(a, b, text=None):
-        edge([side(a, "r" if nodes[b][0] > nodes[a][0] else "l"), side(b, "l" if nodes[b][0] > nodes[a][0] else "r")],
-             text, (side(a, "r")[0] + 3, nodes[a][1] + 3) if text and nodes[b][0] > nodes[a][0]
-             else ((side(a, "l")[0] - 15, nodes[a][1] + 3) if text else None))
+    def back_up(key, target):
+        tx = nodes[target][0]
+        start_pt = side(key, "r" if tx > nodes[key][0] else "l")
+        edge([start_pt, (tx, start_pt[1]), side(target, "b")])
 
-    def v(a, b, text=None):
-        p = side(a, "b")
-        edge([p, side(b, "t")], text, (p[0] + 4, p[1] - 11) if text else None)
+    l1 = lane(1, "1  Add food to the shared pantry", [
+        (0, "p", "Open app"), (1, "d", "Signed in?"), (2, "p", "Shared pantry"), (3, "d", "Online?"),
+        (4, "s", "Scan shelves"), (5, "d", "Items found?"), (6, "s", "Review items, add expiry dates"),
+        (7, "a", "Saved to shared pantry"), (8, "a", "Expiry reminders scheduled")])
+    chain(l1, {"1-1": "Yes", "1-3": "Yes", "1-5": "Yes"})
+    back_up(branch("1-1", 1, 1, "Log in or sign up"), "1-2")
+    branch("1-3", 3, 1, "Offline: cached pantry, no AI")
+    back_up(branch("1-5", 5, 1, "Type items by hand"), "1-6")
 
-    h("open", "auth")
-    h("auth", "home", "Yes")
-    v("auth", "login", "No")
-    h("home", "online")
-    h("online", "input", "Yes")
-    v("online", "offline", "No")
-    tip = side("input", "r")
-    edge([tip, side("scan", "l")], "Photo", (tip[0] - 9, tip[1] + 8))
-    edge([side("input", "b"), side("edit", "t")], "Type", (xs[4] + 4, side("input", "b")[1] - 11))
-    v("scan", "found")
-    h("found", "edit", "Yes")
-    v("found", "manual", "No")
-    edge([side("manual", "l"), (xs[4], yb2), side("edit", "b")])
-    h("edit", "prefs")
-    h("prefs", "gen")
-    h("gen", "ok")
-    h("ok", "list", "Yes")
-    v("ok", "error", "No")
-    edge([side("error", "r"), (xs[2], yb2), side("gen", "b")], "Retry", (side("error", "r")[0] + 3, yb2 + 3))
-    v("list", "detail")
-    h("detail", "missing")
-    h("missing", "shop", "Yes")
-    h("shop", "save")
-    h("save", "saved", "Yes")
-    h("saved", "end")
-    # A login joins Home from below; so does a retry from the Offline screen.
-    edge([side("login", "r"), (xs[2], ya2), side("home", "b")])
-    edge([side("offline", "l"), (xs[2], ya2)], "Retry", (side("offline", "l")[0] - 24, ya2 + 3))
-    miss_low = side("missing", "b")
-    edge([miss_low, (xs[1], yc2), (xs[3], yc2), side("save", "b")], "No", (xs[1] + 4, miss_low[1] - 11))
-    save_top = side("save", "t")
-    edge([save_top, (xs[3], yc + 56), (xs[5], yc + 56), side("end", "t")], "No", (xs[3] + 4, save_top[1] + 2))
+    l2 = lane(2, "2  Decide what to cook", [
+        (0, "p", "Pantry: Ne Pişirsem?"), (1, "s", "Preferences sheet"),
+        (2, "a", "AI suggests 3 recipes, expiring items first"), (3, "d", "Request OK?"),
+        (4, "s", "Recipe suggestions"), (5, "s", "Recipe detail"), (6, "d", "Missing items?"),
+        (7, "s", "Tap Cooked"), (8, "a", "Used items set to Low, finished ones to list")])
+    chain(l2, {"2-3": "Yes", "2-6": "No"})
+    back_up(branch("2-3", 3, 2, "Error, retry"), "2-2")
+    back_up(branch("2-6", 6, 2, "Add to shared list", "a", "Yes"), "2-7")
 
-    # Legend.
+    l3 = lane(3, "3  Shop and stay ahead of expiry", [
+        (0, "s", "Shared shopping list"), (1, "s", "Tick Bought"), (2, "a", "Item back in pantry"),
+        (3, "p", "Shared pantry"), (5, "a", "Reminder: item expires tomorrow"), (6, "s", "Pantry, expiring first"),
+        (7, "p", "Continue in lane 2")])
+    chain(l3[:4])
+    chain(l3[4:])
+
     ly = 30
     items = [("#FFFFFF", MOCK["primary"], "Screen"), (MOCK["warn_soft"], MOCK["warn"], "Decision"),
-             (MOCK["ok_soft"], MOCK["ok"], "AI or stored data"), (MOCK["soft"], MOCK["primary"], "Start or end")]
+             (MOCK["ok_soft"], MOCK["ok"], "Automatic (AI, sync, reminder)"), (MOCK["soft"], MOCK["primary"], "Pantry, start or end")]
     x = 30
     for fill, stroke, text in items:
         c.setFillColor(colors.HexColor(fill))
@@ -391,11 +381,9 @@ def user_flow():
         x += 30 + pdfmetrics.stringWidth(text, "Body", 7.8)
     c.setFillColor(MUTED)
     c.setFont("Body", 7.8)
-    c.drawRightString(width - 30, ly + 2, "Bottom navigation links Home, Saved recipes and Shopping list at any time. "
-                                          "Saved recipes also open offline.")
+    c.drawRightString(width - 30, ly + 2, "Bottom tabs: Dolap (pantry), Tarifler (saved recipes), Liste (shopping list).")
     c.save()
 
-    # Geometry self-check: edges must not run through unrelated nodes or cross each other.
     problems = []
     for (a, b) in segments:
         x0, x1 = sorted((a[0], b[0]))
@@ -403,16 +391,11 @@ def user_flow():
         for key, (nx, ny, rx, ry) in nodes.items():
             if x0 < nx + rx - 1 and x1 > nx - rx + 1 and y0 < ny + ry - 1 and y1 > ny - ry + 1:
                 problems.append(f"edge {a}->{b} crosses node {key}")
-    for i, (a, b) in enumerate(segments):
-        for (e, f) in segments[i + 1:]:
-            ah, eh = a[1] == b[1], e[1] == f[1]
-            if ah == eh:
-                continue
-            (hp, hq), (vp, vq) = ((a, b), (e, f)) if ah else ((e, f), (a, b))
-            hx0, hx1 = sorted((hp[0], hq[0]))
-            vy0, vy1 = sorted((vp[1], vq[1]))
-            if hx0 + 1 < vp[0] < hx1 - 1 and vy0 + 1 < hp[1] < vy1 - 1:
-                problems.append(f"edges cross at {vp[0]},{hp[1]}")
+    keys = list(nodes.items())
+    for i, (ka, (ax, ay, arx, ary)) in enumerate(keys):
+        for kb, (bx, by, brx, bry) in keys[i + 1:]:
+            if abs(ax - bx) < arx + brx and abs(ay - by) < ary + bry:
+                problems.append(f"nodes overlap {ka} {kb}")
     for problem in problems:
         print("user-flow:", problem)
 
@@ -432,9 +415,9 @@ class MvvmDiagram(Flowable):
             c.setLineWidth(0.9)
             c.roundRect(x, y, w, h, 6, fill=1)
             c.setFillColor(INK)
-            c.setFont("Bold", 8.8)
+            c.setFont("Bold", 8.4)
             c.drawCentredString(x + w / 2, y + h / 2 + 2, title)
-            c.setFont("Body", 7.4)
+            c.setFont("Body", 7.2)
             c.drawCentredString(x + w / 2, y + h / 2 - 9, detail)
 
         def arrow(x, y0, y1):
@@ -455,16 +438,18 @@ class MvvmDiagram(Flowable):
             c.setFont("Body", 7.3)
             c.drawString(x, y, text)
 
-        left, w, h = 0, 386, 38
+        w, h = 386, 38
         y_view, y_vm, y_repo, y_src = 178, 118, 58, 0
-        box(left, y_view, w, h, "View", "Screens and widgets (Flutter). No business logic. go_router moves between them")
-        box(left, y_vm, w, h, "ViewModel", "ChangeNotifier classes exposed with Provider. Hold loading, data and error state")
-        box(left, y_repo, w, h, "Repository and service interfaces", "Dart abstract classes. ViewModels depend only on these")
+        box(0, y_view, w, h, "View", "Cupertino screens and widgets. No business logic. go_router moves between them")
+        box(0, y_vm, w, h, "ViewModel", "ChangeNotifier classes exposed with Provider. Loading, data, error state, loop rules")
+        box(0, y_repo, w, h, "Repository and service interfaces", "Dart abstract classes. ViewModels depend only on these")
         src = colors.white
-        sw = (w - 24) / 3
-        box(0, y_src, sw, h, "Hive", "Saved recipes on device", src)
-        box(sw + 12, y_src, sw, h, "Firebase", "Auth, Firestore", src)
-        box(2 * (sw + 12), y_src, sw, h, "firebase_ai + App Check", "Gemini: image + JSON", src)
+        sw = (w - 3 * 8) / 4
+        sources = [("Hive", "Pantry copy, saved"), ("Firebase", "Auth, Firestore"),
+                   ("firebase_ai", "Gemini + App Check"), ("Notifications", "Local reminders")]
+        for i, (title, detail) in enumerate(sources):
+            box(i * (sw + 8), y_src, sw, h, title, detail, src)
+            arrow(sw / 2 + i * (sw + 8), y_repo, y_src + h)
         box(402, 0, TEXT_WIDTH - 402, y_view + h, "Model", "Plain Dart classes", colors.HexColor(MOCK["warn_soft"]),
             colors.HexColor(MOCK["warn"]))
         arrow(150, y_view, y_vm + h)
@@ -475,8 +460,6 @@ class MvvmDiagram(Flowable):
         note(157, y_repo + h + 8, "Future and Stream calls")
         arrow(120, y_repo + h, y_vm)
         note(14, y_repo + h + 8, "data or typed errors")
-        for i in range(3):
-            arrow(sw / 2 + i * (sw + 12), y_repo, y_src + h)
 
 
 def architecture():
@@ -487,9 +470,23 @@ def architecture():
   Future<void> signOut();
 }
 
+abstract class PantryRepository {
+  Stream<List<PantryItem>> watch(String householdId);
+  Future<void> addAll(String householdId, List<ScannedItem> items);
+  Future<void> update(String householdId, PantryItem item);
+  Future<void> markCooked(String householdId, Recipe recipe);  // one batched write
+  Future<void> remove(String householdId, String itemId);
+}
+
+abstract class ShoppingListRepository {
+  Stream<List<ListItem>> watchItems(String householdId);
+  Future<void> add(String householdId, String name);
+  Future<void> markBought(String householdId, ListItem item); // also puts it in the pantry
+}
+
 abstract class RecipeAiService {
-  Future<List<Ingredient>> detectIngredients(Uint8List photo);
-  Future<List<Recipe>> suggestRecipes(List<Ingredient> items, Preferences prefs);
+  Future<List<ScannedItem>> detectItems(Uint8List photo);
+  Future<List<Recipe>> suggestRecipes(List<PantryItem> pantry, Preferences prefs);
 }
 
 abstract class SavedRecipeRepository {
@@ -498,28 +495,24 @@ abstract class SavedRecipeRepository {
   Future<void> delete(String recipeId);
 }
 
-abstract class ShoppingListRepository {
-  Stream<List<ListItem>> watchItems(String householdId);
-  Future<void> add(String householdId, String name);
-  Future<void> setChecked(String householdId, String itemId, bool checked);
+abstract class ReminderService {
+  Future<void> schedule(PantryItem item);   // the day before expiresOn
+  Future<void> cancel(String itemId);
 }
 
 abstract class HouseholdRepository {
   Future<Household> create();
   Future<Household> joinWithCode(String inviteCode);
-}
-
-abstract class ConnectivityService {
-  Stream<bool> get isOnline;
 }"""
     response = """{
   "recipes": [{
-    "title": "Patatesli Omlet",
-    "minutes": 20,
+    "title": "Menemen",
+    "minutes": 15,
     "servings": 2,
-    "usedIngredients": ["patates", "yumurta", "soğan", "peynir"],
-    "missingIngredients": ["tereyağı"],
-    "steps": ["Patatesleri küp küp doğra.", "Tavada altın rengi olana kadar kavur."]
+    "usedIngredients": ["domates", "yumurta", "biber", "soğan"],
+    "usesExpiring": ["domates"],
+    "missingIngredients": [],
+    "steps": ["Biberi ve soğanı kavur.", "Domatesi ekle.", "Yumurtaları kır, karıştır."]
   }]
 }"""
     build("architecture-protocols.pdf", header("Architecture and Protocols") + [
@@ -530,29 +523,29 @@ abstract class ConnectivityService {
         MvvmDiagram(),
         Spacer(1, 7),
         table([["Layer", "Role in Dolaptan", "Examples"],
-               ["Model", "Plain Dart classes with JSON and Hive conversion", "Recipe, Ingredient, Preferences, ListItem, Household, AppUser"],
-               ["View", "Display state and forward events. They never call Firebase", "HomeScreen, IngredientsScreen, RecipeListScreen"],
-               ["ViewModel", "Screen state and rules, such as validating AI output and calculating match %", "ScanViewModel, RecipeViewModel, ShoppingListViewModel"],
-               ["Repository / Service", "Hide where data comes from, so ViewModels can be tested with fakes", "RecipeAiService, SavedRecipeRepository, ShoppingListRepository"]],
+               ["Model", "Plain Dart classes with JSON and Hive conversion", "PantryItem, ScannedItem, Recipe, ListItem, Preferences, Household"],
+               ["View", "Display state and forward events. They never call Firebase", "PantryScreen, ReviewItemsScreen, RecipeDetailScreen"],
+               ["ViewModel", "Screen state and the loop rules: Cooked lowers items, Bought restocks them", "PantryViewModel, ScanViewModel, RecipeViewModel, ShoppingListViewModel"],
+               ["Repository / Service", "Hide where data comes from, so ViewModels can be tested with fakes", "PantryRepository, RecipeAiService, ReminderService"]],
               [34, 80, 60]),
         Paragraph("2. Screen map", H2),
         table([["Screen", "go_router path", "ViewModel", "Main data"],
                ["Login", "/login", "AuthViewModel", "Firebase Auth"],
-               ["Home", "/home", "SavedViewModel", "Recent saved recipes (Hive)"],
+               ["Pantry (tab)", "/pantry", "PantryViewModel", "Firestore stream, Hive copy, offline banner"],
+               ["Edit item (sheet)", "/pantry/:id", "PantryViewModel", "State, expiry date, reminder"],
                ["Scan", "/scan", "ScanViewModel", "Camera image, AI detection"],
-               ["Ingredients", "/ingredients", "ScanViewModel", "Editable detected list"],
-               ["Preferences", "/preferences", "RecipeViewModel", "Time, servings, allergies"],
-               ["Recipe suggestions", "/recipes", "RecipeViewModel", "3 AI recipes"],
-               ["Recipe detail", "/recipes/:id", "RecipeViewModel", "Recipe, save and add-to-list actions"],
-               ["Saved recipes", "/saved", "SavedViewModel", "Hive, works offline"],
-               ["Shopping list", "/list", "ShoppingListViewModel", "Firestore real-time stream"],
-               ["Offline status", "/offline", "ConnectivityViewModel", "Network state, saved recipes"]],
-              [38, 34, 44, 58]),
+               ["New items", "/scan/review", "ScanViewModel", "Detected items, expiry dates"],
+               ["Preferences (sheet)", "/cook", "RecipeViewModel", "Time, servings, allergies"],
+               ["Recipe suggestions", "/cook/results", "RecipeViewModel", "3 AI recipes, expiring first"],
+               ["Recipe detail", "/recipe/:id", "RecipeViewModel", "Save, add to list, Cooked"],
+               ["Recipes (tab)", "/recipes", "SavedViewModel", "Saved recipes in Hive"],
+               ["Shopping list (tab)", "/list", "ShoppingListViewModel", "Firestore stream, Bought restocks"]],
+              [38, 30, 44, 62]),
         Spacer(1, 3),
         P("A <font face='Mono'>redirect</font> in go_router sends signed-out users to /login. A "
-          "<font face='Mono'>StatefulShellRoute</font> keeps the three tabs. Scan uses an "
-          "<font face='Mono'>AnimationController</font> for the moving line. Screens open with iOS push "
-          "transitions (<font face='Mono'>CupertinoPage</font>), Preferences opens as a sheet, and the recipe "
+          "<font face='Mono'>StatefulShellRoute</font> keeps the three tabs. Offline status is a banner inside the "
+          "Pantry screen. Scan uses an <font face='Mono'>AnimationController</font> for the moving line. Screens "
+          "open with iOS push transitions (<font face='Mono'>CupertinoPage</font>), sheets slide up, and the recipe "
           "title moves into the detail screen with a <font face='Mono'>Hero</font>."),
         Paragraph("UI layer: Cupertino widgets on iOS and Android", H2),
         P("The interface follows iOS design, so the View layer uses Flutter's Cupertino widgets. They now ship in "
@@ -563,9 +556,10 @@ abstract class ConnectivityService {
                ["Large-title navigation bar", "CupertinoSliverNavigationBar"],
                ["Tab bar", "CupertinoTabBar inside a StatefulShellRoute"],
                ["Inset grouped list", "CupertinoListSection.insetGrouped, CupertinoListTile"],
-               ["Preferences sheet", "showCupertinoSheet"],
-               ["Time and servings", "CupertinoSlidingSegmentedControl"],
-               ["Allergy switches", "CupertinoSwitch"],
+               ["Edit item, Preferences", "showCupertinoSheet"],
+               ["Item state, time, servings", "CupertinoSlidingSegmentedControl"],
+               ["Expiry date, reminders", "CupertinoDatePicker, CupertinoSwitch"],
+               ["Cooked confirmation", "CupertinoAlertDialog"],
                ["Search, loading", "CupertinoSearchTextField, CupertinoActivityIndicator"],
                ["Swipe to delete", "flutter_slidable (MIT, Android and iOS)"],
                ["Icons", "cupertino_icons (MIT)"]],
@@ -578,25 +572,31 @@ abstract class ConnectivityService {
           "before week 11.]</b>"),
         Paragraph("3. Data model", H2),
         Preformatted("""Dart models
-  Ingredient   name, isUncertain
+  PantryItem   id, name, state (have | low | out), expiresOn?, remind, addedBy, updatedAt
+  ScannedItem  name, isUncertain, expiresOn?
   Preferences  minutes, servings, allergies[]
-  Recipe       id, title, minutes, servings, usedIngredients[], missingIngredients[], steps[]
-               photoPath (optional, empty until a real photo exists; the photo space is hidden)
-               matchPercent = used / (used + missing), calculated in the app, never by the AI
+  Recipe       id, title, minutes, servings, usedIngredients[], usesExpiring[],
+               missingIngredients[], steps[], photoPath? (photo space hidden when empty)
   ListItem     id, name, addedBy, addedByName, checked, createdAt
 
-Firestore (shared data only)
-  users/{uid}                     name, householdId
-  households/{id}                 name, inviteCode, memberIds[]
-  households/{id}/items/{itemId}  name, addedBy, addedByName, checked, createdAt
-  inviteCodes/{code}              householdId
+Firestore (shared by the household)
+  users/{uid}                        name, householdId
+  households/{id}                    name, inviteCode, memberIds[]
+  households/{id}/pantry/{itemId}    name, state, expiresOn, addedBy, updatedAt
+  households/{id}/items/{itemId}     name, addedBy, addedByName, checked, createdAt
+  inviteCodes/{code}                 householdId
 
 Hive (device)
-  saved_{uid}                     saved recipes, one box per user, for offline reading
-  prefs                           last used preferences""", CODE),
-        P("Photos are compressed, sent only for analysis, and never stored in our database. Firestore security "
-          "rules allow only household members to read or change that household's items. A user joins by reading "
-          "one invite code document (no listing) and can add only their own uid to memberIds."),
+  pantry_{householdId}               last synced pantry, opens offline
+  saved_{uid}                        saved recipes
+  prefs                              last used preferences""", CODE),
+        P("<b>Loop rules.</b> <i>Cooked</i>: every used item goes from have to low, or from low to out. Items that "
+          "run out leave the pantry and join the shopping list in one batched write. <i>Bought</i>: the item "
+          "returns to the pantry as have and leaves the list in one batched write. When two people edit the same "
+          "item, the last write wins, which is enough for a household."),
+        P("Photos are compressed, sent only for analysis, and never stored. Firestore security rules allow only "
+          "household members to read or change that household's pantry and list. A user joins by reading one "
+          "invite code document and can add only their own uid to memberIds."),
         Paragraph("4. Key interfaces (Dart abstract classes)", H2),
         P("Dart has no <font face='Mono'>protocol</font> keyword, so abstract classes define these contracts. "
           "ViewModels depend on them rather than on Firebase, so an implementation can be replaced by a fake in "
@@ -606,19 +606,24 @@ Hive (device)
         table([["Protocol / technology", "Purpose in the app"],
                ["HTTPS (TLS)", "Encrypts traffic between the app and Firebase services"],
                ["Firebase Authentication", "Signs users in with email and password and gives requests a verified identity"],
-               ["Firestore real-time listeners", "Push shopping list changes to every household member as a Dart Stream"],
+               ["Firestore real-time listeners", "Push pantry and list changes to every household member as Dart Streams"],
+               ["Firestore batched writes", "Keep the loop consistent: Cooked and Bought change pantry and list together"],
                ["Firestore security rules", "Check on the server who can read or change each document"],
-               ["Firebase AI Logic (firebase_ai)", "Sends the photo and prompt to the Gemini Developer API through Firebase, so no Gemini API key ships in the app. Planned model: gemini-3.8-flash, kept in one constant so it can change"],
-               ["Firebase App Check", "Proves that AI requests come from our real app. Uses Play Integrity on Android, and the debug provider during development"],
-               ["JSON with a response schema", "Requests structured output (responseMimeType + responseSchema), then parses it into Dart models"]],
+               ["Firebase AI Logic (firebase_ai)", "Sends the photo or pantry list to the Gemini Developer API through Firebase, so no Gemini API key ships in the app. Planned model: gemini-3.8-flash, kept in one constant"],
+               ["Firebase App Check", "Proves that AI requests come from our real app. Play Integrity on Android, debug provider in development"],
+               ["JSON with a response schema", "Requests structured output (responseMimeType + responseSchema), then parses it into Dart models"],
+               ["Local notifications", "flutter_local_notifications schedules expiry reminders on the device. Android 13 and later asks for permission"]],
               [58, 116]),
-        Paragraph("6. Recipe generation sequence", H2),
-        P("(1) The View passes the photo to ScanViewModel. (2) RecipeAiService returns ingredients, and unclear ones "
-          "are marked uncertain. (3) The user edits the list and sets time, servings and allergies. (4) The service "
-          "requests 3 Turkish recipes as JSON in the format below. (5) The ViewModel validates the response, "
-          "calculates match %, and exposes the cards. If a request or parsing fails, it retries once and then shows "
-          "a retry message."),
-        Preformatted(response, CODE),
+        Paragraph("6. Main sequences", H2),
+        P("<b>Add food:</b> (1) The photo goes to ScanViewModel. (2) RecipeAiService returns items, and unclear "
+          "ones are marked uncertain. (3) The user fixes the list and adds expiry dates. (4) PantryRepository saves "
+          "them for the household, and ReminderService schedules reminders."),
+        KeepTogether([
+        P("<b>Cook:</b> (1) RecipeViewModel sorts the pantry so that items close to expiry come first. (2) "
+          "RecipeAiService asks for 3 Turkish recipes as JSON, as shown below. (3) The ViewModel validates the "
+          "response; if the request or parsing fails, it retries once and then shows a retry message. (4) After "
+          "Cooked, PantryRepository.markCooked updates the pantry and the list together."),
+        Preformatted(response, CODE)]),
     ])
 
 
@@ -627,67 +632,71 @@ def overview():
     plan = [["Course week (topic)", MEMBER_1, MEMBER_2],
             ["7 (milestone)", "Interviews, Figma import, prototype links", "Review PDFs, GitHub repository"],
             ["8 (midterm)", "Flutter project, go_router routes, screen skeletons", "Firebase project, Auth, App Check debug setup"],
-            ["9 (Hive)", "Saved recipes in Hive, Offline status", "Camera, AI ingredient detection, editable list"],
-            ["10 (Firestore, Auth)", "Household, shopping list stream, security rules", "Recipe generation with JSON schema, recipe screens"],
-            ["11 (Animations)", "Scan animation, recipe transitions", "Error states, retry, response validation"],
-            ["12 (Device, publishing)", "Real-phone tests with two accounts, bug fixes", "APK build, README, screenshots"],
+            ["9 (Hive)", "Pantry copy and saved recipes in Hive, offline banner", "Camera, AI item detection, review screen"],
+            ["10 (Firestore, Auth)", "Household, shared pantry and list streams, security rules", "Recipe generation with JSON schema, Cooked and Bought loop"],
+            ["11 (Animations)", "Scan animation, sheets, recipe transitions", "Error states, retry, response validation"],
+            ["12 (Device, publishing)", "Expiry reminders with local notifications", "Two-account and real-phone tests, APK build, README"],
             ["13 (Presentations)", "5-minute demo and presentation", "2-minute backup video, peer contribution form"]]
     build("project-overview.pdf", header("Project Overview") + [
         Paragraph("1. Problem and user", H2),
-        P("Our users are students and small households in Türkiye who cook at home. Our starting assumption is that "
-          "they open the fridge, see ingredients, and still cannot decide what to make, which can lead to a takeaway "
-          "order or food that spoils. The interviews below test this assumption and show how often it happens."),
+        P("Our users are students who share a home and small households in Türkiye. We expect them to face two "
+          "connected problems. First, they open the fridge and cannot decide what to cook with what is there. "
+          "Second, nobody knows exactly what is at home: food goes off, someone buys milk twice, and shopping is "
+          "organized through a group chat. These are assumptions, and the interviews below test them."),
+        P("<b>Our answer:</b> Dolaptan is a shared kitchen. Everyone in the home sees one pantry, gets recipes "
+          "that use what is about to go off, and shares one shopping list. Cooking and shopping update the pantry, "
+          "so it stays current without much typing."),
         Paragraph("2. Evidence", H2),
         P("<b>Interviews:</b> " + EVIDENCE),
         P("<b>Statistic:</b> The UNEP Food Waste Index Report 2024 estimates 1.05 billion tonnes of food waste "
-          "worldwide in 2022, and around 60% of it came from households. Its annex lists a Türkiye household estimate of "
-          "102 kg per person per year (about 8.7 million tonnes). This is a <b>low-confidence</b> value: the report "
-          "states it found no household study for Türkiye, so the number is extrapolated from other countries. "
-          "We use it as context, not as proof of our problem."),
+          "worldwide in 2022, and around 60% of it came from households. Its annex lists a Türkiye household "
+          "estimate of 102 kg per person per year (about 8.7 million tonnes). This is a <b>low-confidence</b> "
+          "value: the report found no household study for Türkiye, so the number is extrapolated from other "
+          "countries. We use it as context, not as proof of our problem."),
         Paragraph("3. Why existing apps fall short", H2),
         table([["App", "What we verified (2 Nov 2026)", "Gap for our user"],
-               ["Nefis Yemek Tarifleri", "Strong Turkish recipe brand: 4.8 from 94k ratings on the Turkish App Store. Its website offers ingredient selection and an AI assistant. The app listing says it does not work without internet", "Listing does not mention photo detection. No offline use. Shared list [TO CHECK]"],
-               ["SnapChef AI", "Detects ingredients from a fridge or pantry photo. Premium costs $14.99 per month or $19.99-$29.99 per year", "Turkish recipes and interface [TO CHECK]"],
-               ["Recipez", "Fridge scan and 3 recipes, like ours. Filters listed: Italian, Chinese, Thai, Mexican, Indian. Exports to Walmart. 4 ratings", "No listed Turkish focus. US grocery link. Paid plans after trial"],
-               ["Samsung Food", "Phone photo scanning is reported as part of paid Food+", "Scan reported as paid only. Turkish support [TO CHECK]"]],
-              [32, 92, 50]),
+               ["ChatGPT, Gemini", "General assistants. They can suggest recipes from a photo", "Not built to keep one structured pantry that several people update"],
+               ["FridgeBuddy", "Shared pantry and list, expiry reminders, barcode scan. UK App Store listing: sharing through iCloud, household invites in Pro, meal ideas only with Apple Intelligence, Turkish not listed, 22 ratings", "Paid household sharing, no Turkish, recipe ideas tied to Apple devices"],
+               ["the fifo", "Free shared list and pantry with expiry countdowns (Product Hunt page)", "No recipe suggestions mentioned"],
+               ["Nefis Yemek Tarifleri", "Turkish recipe brand, 4.8 from 94k ratings on the Turkish App Store. The website has ingredient selection and an AI assistant. The app listing says it needs internet", "No shared pantry or list. Photo detection not mentioned"],
+               ["SnapChef AI", "Detects ingredients from a fridge photo. Premium $14.99 per month or $19.99-$29.99 per year", "Single user, no shared pantry. Turkish [TO CHECK]"]],
+              [30, 90, 54]),
         Spacer(1, 4),
-        P("Photo-to-recipe apps and Turkish recipe apps both exist. We did not confirm any app that combines all four parts: "
-          "Turkish-first recipes, editable photo detection, offline saved recipes, and a shared household list. "
-          "This is a desk check of store listings, not a full market review. "
-          "<b>[TO CHECK: install the apps above and test them in Turkish before submission.]</b>"),
+        P("Pantry apps, recipe apps and AI assistants all exist. We did not confirm any app that combines a free "
+          "shared household pantry, Turkish recipes that use what is about to go off, and a list that restocks the "
+          "pantry. This is a desk check of store listings, not a full market review. <b>[TO CHECK: install "
+          "FridgeBuddy and the fifo and test them before submission.]</b>"),
         Paragraph("4. Must-have features and course topics", H2),
         table([["Must-have feature", "Course topic"],
-               ["Photo to editable ingredient list and 3 recipes (firebase_ai + App Check)", "HTTP/API, JSON, async (Future)"],
-               ["Saved recipes that open without internet", "Local DB (Hive)"],
-               ["Sign in, and a real-time shared shopping list", "Firebase Auth, Firestore, Streams, StreamBuilder"],
-               ["Multi-step flow from photo to recipe, with bottom tabs", "Navigation, go_router"],
-               ["Scan animation and recipe transitions", "Animations and gestures"],
+               ["Add food by photo, then get 3 recipes that use expiring items (firebase_ai + App Check)", "HTTP/API, JSON, async (Future)"],
+               ["Shared pantry and shopping list that update live, with Cooked and Bought rules", "Firebase Auth, Firestore, Streams, StreamBuilder"],
+               ["Pantry copy and saved recipes that open without internet", "Local DB (Hive)"],
+               ["Expiry reminders the day before", "Device features: local notifications"],
+               ["Tabs, sheets, scan animation and recipe transitions", "Navigation (go_router), animations"],
                ["Separation of screens, state and data", "MVVM, Provider"]],
               [104, 70]),
         KeepTogether([Paragraph("5. Weekly plan", H2), table(plan, [36, 69, 69])]),
         KeepTogether([Paragraph("6. Risks and responses", H2),
         table([["Risk", "Response"],
-               ["AI detects an ingredient incorrectly", "Users review every item, and uncertain ones are flagged before recipes are generated"],
+               ["The pantry gets out of date", "Cooked and Bought update it automatically; states are only have, low and out, not exact counts"],
+               ["AI detects an item incorrectly", "Users review every item, and uncertain ones are flagged before saving"],
                ["AI suggests unsafe or allergenic food", "Pass allergies in the prompt, show a reminder, and ask users to check"],
-               ["AI free-tier limit or outage", "Show a retry message and keep manual input and saved recipes available"],
-               ["AI returns invalid JSON", "Use a response schema, validate the result, and retry once"],
+               ["AI free-tier limit, outage or invalid JSON", "Response schema, validation, one retry, then a retry message. The pantry and saved recipes still work"],
                ["App Check blocks AI requests in the demo build", "Firebase docs list required enforcement from 2 Nov 2026. Use the debug provider in development. For an APK outside Google Play, register its SHA-256, turn off PLAY_RECOGNIZED, and test early"],
+               ["Reminders do not fire", "Ask for notification permission on Android 13+, and test on real phones; some Android brands stop background apps"],
+               ["Two people edit the same item", "Last write wins; batched writes keep pantry and list consistent"],
                ["Photos may contain personal content", "Gemini free-tier input may be reviewed by people and used to improve Google products. Tell users to photograph only shelves, and do not store photos"],
-               ["Security rules are misconfigured", "Test the rules with two accounts before the demo"],
-               ["Hive package maintenance", "Stable hive 2.2.3 is about 4 years old. Use the compatible community fork hive_ce if hive causes problems"],
-               ["Short schedule", "Keep to the must-have features and leave extras until after the demo"]],
-              [62, 112])]),
+               ["Short schedule", "Keep to the six must-haves. Cooking mode and barcode scanning wait until after the demo"]],
+              [58, 116])]),
         Paragraph("Sources (accessed 2 Nov 2026)", H2),
         *[Paragraph(s, SMALL) for s in [
             "UNEP (2024), Food Waste Index Report 2024: totals p. 64 of PDF, Türkiye data status p. 41, Annex 3 p. 190. "
             "Copy: sdg2advocacyhub.org/wp-content/uploads/2024/03/food_waste_index_report_2024.pdf",
+            "FridgeBuddy: apps.apple.com/gb/app/id1500190823. the fifo: producthunt.com/products/the-fifo",
             "Nefis Yemek Tarifleri: apps.apple.com/tr/app/nefis-yemek-tarifleri/id947863045, nefisyemektarifleri.com",
             "SnapChef AI: apps.apple.com/us/app/snapchef-ai/id6749183626",
-            "Recipez: apps.apple.com/us/app/id6765974915",
-            "Samsung Food: sammobile.com/news/samsung-food-update-scan-ingredients-using-phone",
             "Firebase AI Logic: firebase.google.com/docs/ai-logic/get-started, /app-check, /models, /generate-structured-output",
-            "Gemini API terms: ai.google.dev/gemini-api/terms. Hive: pub.dev/packages/hive, pub.dev/packages/hive_ce",
+            "flutter_local_notifications: pub.dev/packages/flutter_local_notifications. Gemini API terms: ai.google.dev/gemini-api/terms",
         ]],
     ])
 

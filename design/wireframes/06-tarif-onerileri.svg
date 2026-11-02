@@ -9,7 +9,7 @@
 <g id="sf-chevron.backward" transform="translate(38 80) scale(1.0)"><path d="M4 -8 L-4 0 L4 8" fill="none" stroke="#1A1A1A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
 </g>
 <text x="16.0" y="142" font-family="Inter" font-size="34" font-weight="700" fill="#1A1A1A">Öneriler</text>
-<text x="16.0" y="170" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">8 malzemene göre</text>
+<text x="16.0" y="170" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Önce bozulacaklara göre</text>
 <rect x="16" y="196" width="328" height="228" rx="20" fill="#FFFFFF"/>
 <rect x="100" y="271.5" width="244" height="0.5" rx="0" fill="#C8C8C8"/>
 <rect x="100" y="347.5" width="244" height="0.5" rx="0" fill="#C8C8C8"/>
@@ -17,24 +17,24 @@
 <rect x="16" y="196" width="328" height="76" rx="0" fill="#000000" fill-opacity="0"/>
 <rect id="foto-alani-1x1" x="32" y="206" width="56" height="56" rx="10" fill="#DADADA"/>
 <text x="100.0" y="222" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Menemen</text>
-<text x="100.0" y="242" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">15 dk · 2 kişilik · %100 uyum</text>
-<text x="100.0" y="260" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Eksik yok</text>
+<text x="100.0" y="242" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">15 dk · 2 kişilik</text>
+<text x="100.0" y="260" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Domatesi değerlendirir</text>
 <g id="sf-chevron.forward" transform="translate(322 234) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#B0B0B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 </g>
-<g id="satir-omlet">
+<g id="satir-cacik">
 <rect x="16" y="272" width="328" height="76" rx="0" fill="#000000" fill-opacity="0"/>
 <rect id="foto-alani-1x1" x="32" y="282" width="56" height="56" rx="10" fill="#DADADA"/>
-<text id="tarif-baslik" x="100.0" y="298" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Patatesli Omlet</text>
-<text x="100.0" y="318" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">20 dk · 2 kişilik · %80 uyum</text>
-<text x="100.0" y="336" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Eksik: Tereyağı</text>
+<text x="100.0" y="298" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Cacık</text>
+<text x="100.0" y="318" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">10 dk · 2 kişilik</text>
+<text x="100.0" y="336" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Yoğurdu değerlendirir</text>
 <g id="sf-chevron.forward" transform="translate(322 310) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#B0B0B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 </g>
-<g id="satir-mucver">
+<g id="satir-omlet">
 <rect x="16" y="348" width="328" height="76" rx="0" fill="#000000" fill-opacity="0"/>
 <rect id="foto-alani-1x1" x="32" y="358" width="56" height="56" rx="10" fill="#DADADA"/>
-<text x="100.0" y="374" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Patates Mücveri</text>
-<text x="100.0" y="394" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">30 dk · 2 kişilik · %60 uyum</text>
-<text x="100.0" y="412" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Eksik: Un, Kabartma tozu</text>
+<text id="tarif-baslik" x="100.0" y="374" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Patatesli Omlet</text>
+<text x="100.0" y="394" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">20 dk · 2 kişilik</text>
+<text x="100.0" y="412" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Eksik: Tereyağı</text>
 <g id="sf-chevron.forward" transform="translate(322 386) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#B0B0B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 </g>
 <g id="btn-baska-tarif">

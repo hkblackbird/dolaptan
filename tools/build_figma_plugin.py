@@ -11,7 +11,8 @@ BASE = Path(__file__).resolve().parents[1]
 DESIGN = BASE / "design"
 OUT = DESIGN / "figma-eklentisi"
 PAGES = [("Wireframes", "wireframes"), ("Mockups", "mockups"), ("Mockups Koyu", "mockups-dark")]
-FLOWS = [("Ana akış", "01-giris"), ("Çevrimdışı", "10-cevrimdisi"), ("Boş ve hata durumları", "04b-malzeme-yok")]
+FLOWS = [("Ana akış", "01-giris"), ("Bozulma bildirimi", "02b-bozulma-bildirimi"),
+         ("Çevrimdışı", "10-cevrimdisi"), ("Boş ve hata durumları", "04b-malzeme-yok")]
 
 
 def ease(kind):
@@ -122,8 +123,8 @@ async function run() {
     spec.frames.forEach((f, index) => {
       const node = figma.createNodeFromSvg(f.svg);
       node.name = f.name;
-      node.x = (index % 9) * (360 + GAP);
-      node.y = Math.floor(index / 9) * (800 + ROW_GAP);
+      node.x = (index % 10) * (360 + GAP);
+      node.y = Math.floor(index / 10) * (800 + ROW_GAP);
       page.appendChild(node);
       frames[f.name] = node;
       report.frames++;

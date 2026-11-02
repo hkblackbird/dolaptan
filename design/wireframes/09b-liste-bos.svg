@@ -12,8 +12,8 @@
 <text x="16.0" y="170" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Ev listesi · 2 üye</text>
 <g id="sf-cart" transform="translate(180.0 300) scale(2.0)"><path d="M-11 -8 H-8 L-5 4 H8 L10 -4 H-7" fill="none" stroke="#5E5E5E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-4" cy="8" r="1.4" fill="#5E5E5E"/><circle cx="7" cy="8" r="1.4" fill="#5E5E5E"/></g>
 <text x="131.3" y="352" font-family="Inter" font-size="22" font-weight="700" fill="#1A1A1A">Liste Boş</text>
-<text x="98.7" y="380" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Tariflerdeki eksikleri</text>
-<text x="94.9" y="402" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">buraya ekleyebilirsin.</text>
+<text x="66.3" y="380" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Tariflerdeki eksikler ve biten</text>
+<text x="89.6" y="402" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">ürünler buraya eklenir.</text>
 <g id="btn-urun-ekle">
 <rect x="124.6" y="424" width="110.8" height="44" rx="22" fill="#000000" fill-opacity="0"/>
 <text x="140.6" y="452" font-family="Inter" font-size="17" font-weight="600" fill="#3A3A3A">Ürün Ekle</text>
@@ -21,15 +21,15 @@
 <g id="sekme-cubugu">
 <rect x="21" y="717" width="318" height="62" rx="31" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="0.5"/>
 </g>
-<g id="sekme-ana-sayfa">
+<g id="sekme-dolap">
 <rect x="25" y="721" width="98" height="54" rx="27" fill="#000000" fill-opacity="0"/>
-<g id="sf-house.fill" transform="translate(74 739) scale(1.0)"><path d="M-9 -1 L0 -9 L9 -1 V9 H3 V3 H-3 V9 H-9 Z" fill="#1A1A1A"/></g>
-<text x="49.6" y="766" font-family="Inter" font-size="10" font-weight="500" fill="#1A1A1A">Ana Sayfa</text>
+<g id="sf-refrigerator.fill" transform="translate(74 739) scale(1.0)"><path d="M-7 -10 H7 Q8 -10 8 -9 V9 Q8 10 7 10 H-7 Q-8 10 -8 9 V-9 Q-8 -10 -7 -10 Z" fill="#1A1A1A"/><path d="M-8 -3 H8 M-4 -7.5 V-5.5 M-4 0 V4" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/></g>
+<text x="60.2" y="766" font-family="Inter" font-size="10" font-weight="500" fill="#1A1A1A">Dolap</text>
 </g>
-<g id="sekme-kayitli">
+<g id="sekme-tarifler">
 <rect x="131" y="721" width="98" height="54" rx="27" fill="#000000" fill-opacity="0"/>
-<g id="sf-bookmark.fill" transform="translate(180 739) scale(1.0)"><path d="M-6 -9 H6 V10 L0 5 L-6 10 Z" fill="#1A1A1A"/></g>
-<text x="165.4" y="766" font-family="Inter" font-size="10" font-weight="500" fill="#1A1A1A">Kayıtlı</text>
+<g id="sf-book.fill" transform="translate(180 739) scale(1.0)"><path d="M0 -6 Q-5 -9 -10 -8 V8 Q-5 7 0 10 Q5 7 10 8 V-8 Q5 -9 0 -6 Z" fill="#1A1A1A"/><path d="M0 -6 V10" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/></g>
+<text x="162.7" y="766" font-family="Inter" font-size="10" font-weight="500" fill="#1A1A1A">Tarifler</text>
 </g>
 <g id="sekme-liste">
 <rect x="237" y="721" width="98" height="54" rx="27" fill="#EDEDED"/>

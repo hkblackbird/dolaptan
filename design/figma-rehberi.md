@@ -1,10 +1,16 @@
 # Figma Rehberi: Dolaptan
 
+Dolaptan, birlikte yaşayanlar için ortak bir mutfak uygulaması. Uygulamada üç ortak parça var:
+
+- **Dolap:** Evdeki herkesin gördüğü ortak dolap.
+- **Tarifler:** Önce bozulacak malzemeleri kullanan tarif önerileri.
+- **Liste:** Ortak alışveriş listesi.
+
 Bu rehber, SVG ekranları Figma'ya aktarmayı, iOS 26 kitiyle tamamlamayı ve tıklanabilir prototipi kurmayı anlatır.
 
 ## Dosyalar
 
-Üç klasör var. Her birinde aynı 17 ekran bulunuyor ve hepsi 360x800 boyutunda.
+Üç klasör var. Her birinde aynı 20 ekran bulunuyor ve hepsi 360x800 boyutunda.
 
 | Klasör | İçerik |
 |---|---|
@@ -12,18 +18,35 @@ Bu rehber, SVG ekranları Figma'ya aktarmayı, iOS 26 kitiyle tamamlamayı ve t�
 | `mockups/` | Açık mod tasarım |
 | `mockups-dark/` | Karanlık mod tasarım |
 
-Bu 17 ekranın 10'u uygulamanın ana ekranlarıdır. Diğerleri tarama animasyonu için iki ara durum (`03b`, `03c`) ve beş ek durumdur: boş, hata ve yükleniyor (`04b`, `06b`, `06c`, `08b`, `09b`).
+Ekranlar şu gruplara ayrılır:
+
+- **Ana ekranlar:** Giriş, Dolap, Tarama, Yeni Malzemeler, Tercihler, Tarif önerileri, Tarif detayı, Tarifler, Alışveriş listesi, Çevrimdışı.
+- **Ek durumlar:** bozulma bildirimi (`02b`), malzeme düzenleme sheet'i (`02c`), "Pişirdim" onayı (`07b`).
+- **Animasyon ara durumları:** `03b` ve `03c`.
+- **Boş, hata ve yükleniyor durumları:** `04b`, `06b`, `06c`, `08b`, `09b`.
 
 ## Hızlı yol: eklentiyle otomatik kurulum
 
-`figma-eklentisi/` klasöründeki eklenti 2. ve 8. bölümlerdeki işleri senin yerine yapar. Sayfaları oluşturur, 51 ekranı yerleştirir, 45 prototip bağlantısını ve akış başlangıçlarını ekler. Eklenti yalnızca Figma masaüstü uygulamasında çalışır.
+`figma-eklentisi/` klasöründeki eklenti 2. ve 8. bölümlerdeki işleri senin yerine yapar:
+
+- Sayfaları oluşturur.
+- 60 ekranı yerleştirir.
+- Prototip bağlantılarını ve akış başlangıçlarını ekler.
+
+Eklenti yalnızca Figma masaüstü uygulamasında çalışır.
 
 1. Figma masaüstü uygulamasını aç ve hesabınla giriş yap.
 2. Yeni bir Design dosyası aç ve adını `Dolaptan` yap.
 3. Sol üstteki Figma menüsünden **Plugins → Development → Import plugin from manifest…** seç.
-4. `mtm4681-dolaptan/design/figma-eklentisi/manifest.json` dosyasını seç.
-5. Yine menüden **Plugins → Development → Dolaptan ekranları** ile eklentiyi çalıştır.
-6. Alt kısımda şu özet görünür: `51 ekran, 45 bağlantı, akışlar eklendi`.
+4. `mtm4681-dolaptan/design/figma-eklentisi/manifest.json` dosyasını seç. Dosyayı göremezsen pencerede **Cmd + Shift + G** tuşlarına basıp bu yolu yapıştır:
+
+   ```
+   /Users/hatice/mtm4681-dolaptan/design/figma-eklentisi/manifest.json
+   ```
+
+   Eklentiyi daha önce içe aktardıysan bu adımı atla. Eklenti, dosyalar güncellenince yeni ekranları kendiliğinden kullanır.
+5. Menüden **Plugins → Development → Dolaptan ekranları** ile eklentiyi çalıştır.
+6. Altta bir özet görünür, örneğin: `60 ekran, 54 bağlantı, akışlar eklendi`.
    - "Bulunamayan katmanlar" yazarsa, o bağlantıları 8. bölümdeki tablodan elle ekle.
    - "Akışları elle ekle" yazarsa, 6. bölümdeki başlangıç noktalarını elle ekle.
 7. Present ile prototipi dene.
@@ -34,27 +57,29 @@ Eklentiyi Figma'nın kendisinde çalıştıramadım; yalnızca taklit bir ortamd
 2. Figma'nın verdiği `id` değerini `manifest.json` dosyasındaki `id` alanına yapıştır.
 3. İçe aktarmayı tekrar dene.
 
+Önceki sürümden kalan bir Figma dosyan varsa, eklentiyi yeni ve boş bir dosyada çalıştır. Böylece eski ve yeni ekranlar karışmaz.
+
 Eklentiden sonra 3, 4 ve 10. bölümlere devam et: kit bileşenleri, fotoğraflar ve linkler.
 
 ## 1. Dosyayı hazırla
 
 1. Figma'da yeni bir Design dosyası aç ve adını `Dolaptan` yap.
-2. Üç sayfa oluştur: `Wireframes`, `Mockups`, `Mockups Koyu`.
+2. Üç sayfa oluştur: `Wireframes`, `Mockups`, `Mockups Koyu`. Eklentiyi kullanıyorsan bu sayfaları eklenti açar.
 3. Maildeki **iOS and iPadOS 26** kitini aç ve **Duplicate** ile kendi hesabına kopyala.
    - Bilinen topluluk adresi: `figma.com/community/file/1527721578857867021`
    - Apple'ın kaynak sayfası artık iOS 27 kitini gösteriyor. Maildeki 26 kitini kullan.
 4. Kitin kütüphanesini `Dolaptan` dosyasına ekle: **Assets → Libraries → kit → Add to file**.
 
-## 2. SVG'leri aktar
+## 2. SVG'leri aktar (eklenti kullanmıyorsan)
 
-1. Her klasördeki 17 dosyayı kendi sayfasına sürükle: `wireframes/` → `Wireframes`, `mockups/` → `Mockups`, `mockups-dark/` → `Mockups Koyu`.
+1. Her klasördeki 20 dosyayı kendi sayfasına sürükle: `wireframes/` → `Wireframes`, `mockups/` → `Mockups`, `mockups-dark/` → `Mockups Koyu`.
 2. Her dosya, dosya adını taşıyan 360x800 boyutunda bir çerçeve (frame) olarak gelir.
-3. Çerçeveleri dosya adı sırasıyla diz. Hepsini seçip hizalama menüsünden **Tidy up** ile aralarını eşitle.
+3. Çerçeveleri dosya adı sırasıyla diz ve hizalama menüsünden **Tidy up** ile aralarını eşitle.
 
 **Kontrol et:**
 
 - Metinler Inter fontuyla görünmeli. Türkçe harfler (ç, ğ, ı, İ, ö, ş, ü) doğru olmalı.
-- SF Pro yüklüyse **Edit → Replace fonts** ile Inter'i SF Pro ile değiştirebilirsin. Görünüm Apple'a daha da yaklaşır.
+- SF Pro yüklüyse **Edit → Replace fonts** ile Inter'i SF Pro ile değiştirebilirsin.
 - SF Pro'nun lisansı onu yalnızca Apple platformlarına ait tasarımlarla sınırlar. Uygulamanın Android sürümünde Inter kalacak.
 
 ## 3. Kit bileşenleriyle değiştir
@@ -77,33 +102,36 @@ Bir bileşeni değiştirmek için:
 | `durum-cubugu` | Status Bar |
 | `ana-ekran-cubugu` | Home Indicator |
 | `geri`, `btn-kapat` ve diğer yuvarlak bar düğmeleri | Navigation Bar (Liquid Glass bar düğmeleri) |
-| `sekme-cubugu` ve `sekme-*` | Tab Bar, 3 sekme |
+| `sekme-cubugu` ve `sekme-*` | Tab Bar, 3 sekme: Dolap, Tarifler, Liste |
 
 ### Ekran ekran
 
 | Ekran | Kit bileşenleri |
 |---|---|
-| 01-giris | Navigation Bar (büyük başlık), Lists (inset grouped, metin alanı satırları), Buttons (prominent ve plain) |
-| 02-ana-sayfa | Navigation Bar (büyük başlık ve sağda bar düğmesi), Buttons (prominent ve plain), Lists (görselli satır), Tab Bar |
+| 01-giris | Navigation Bar (büyük başlık), Lists (metin alanı satırları), Buttons (prominent ve plain) |
+| 02-dolap | Navigation Bar (büyük başlık, sağda iki bar düğmesi), Lists (değer gösteren satırlar), Buttons (prominent), Tab Bar |
+| 02b-bozulma-bildirimi | 02 ile aynı, üstte Notification (bildirim kutusu) |
+| 02c-malzeme-duzenle | Sheet, Navigation Bar (Close ve prominent düğme), Segmented Controls, Lists, Date Picker (compact), Toggles |
 | 03-tarama | Kamera ekranı tam ekran açılır; yalnızca Buttons (glass, daire) kullanılır |
 | 03b, 03c | Progress Indicators (activity indicator), Buttons (glass, kapsül) |
-| 04-malzemeler | Navigation Bar, Lists (inset grouped, alt yazılı satır, swipe action), Buttons (prominent) |
+| 04-yeni-malzemeler | Navigation Bar, Lists (alt yazılı satır, değer, swipe action), Buttons (prominent) |
 | 04b-malzeme-yok | Navigation Bar, Content Unavailable, Buttons |
-| 05-tercihler | Sheet (tutamaçlı), Navigation Bar (sheet içinde: Close ve prominent düğme), Segmented Controls, Lists, Toggles |
-| 06-tarif-onerileri | Navigation Bar, Lists (görselli ve iki satır alt yazılı satır, disclosure indicator), Buttons (plain) |
-| 06b-tarifler-yukleniyor | Navigation Bar, Progress Indicators (activity indicator) |
+| 05-tercihler | Sheet, Navigation Bar (sheet içinde), Segmented Controls, Lists, Toggles |
+| 06-tarif-onerileri | Navigation Bar, Lists (görselli satır, disclosure indicator), Buttons (plain) |
+| 06b-tarifler-yukleniyor | Navigation Bar, Progress Indicators |
 | 06c-tarif-hatasi | Navigation Bar, Content Unavailable, Buttons (plain) |
-| 07-tarif-detay | Navigation Bar (fotoğraf üzerinde glass düğmeler), Lists |
-| 08-kayitli | Navigation Bar, Search Fields, Lists (görselli satır), Tab Bar |
-| 08b-kayitli-bos | Navigation Bar, Content Unavailable, Tab Bar |
+| 07-tarif-detay | Navigation Bar (fotoğraf üzerinde glass düğmeler), Lists, Buttons (prominent) |
+| 07b-pisirdim | Alert (iki düğmeli) |
+| 08-tarifler | Navigation Bar, Search Fields, Lists (görselli satır), Tab Bar |
+| 08b-tarifler-bos | Navigation Bar, Content Unavailable, Tab Bar |
 | 09-alisveris-listesi | Navigation Bar, Lists (onay dairesi satırları, değer gösteren satır), Tab Bar |
 | 09b-liste-bos | Navigation Bar, Content Unavailable, Buttons (plain), Tab Bar |
-| 10-cevrimdisi | Navigation Bar, Content Unavailable (kısa sürüm), Lists, Tab Bar |
+| 10-cevrimdisi | 02 ile aynı, üstte bilgi satırı |
 
 **Dikkat:**
 
 - Kitin iPhone çerçeveleri 360x800 değil, daha büyük olabilir. Biz dersin istediği 360x800 boyutunu koruduk. Bileşenler genişliğe göre esner; ekleyince sağ ve sol kenarlarını çerçeveye sabitle.
-- Tab Bar'ı kitten koyunca etiketleri `Ana Sayfa`, `Kayıtlı`, `Liste` yap ve seçili sekmeyi ekrana göre ayarla.
+- Tab Bar'ı kitten koyunca etiketleri `Dolap`, `Tarifler`, `Liste` yap ve seçili sekmeyi ekrana göre ayarla.
 
 ## 4. Fotoğraf alanları
 
@@ -112,7 +140,7 @@ Yemek fotoğrafları için boş alanlar bırakıldı. İçlerine görsel koymad�
 | Katman | Oran | Nerede |
 |---|---|---|
 | `foto-alani-16x9` | 16:9 | 07-tarif-detay, en üst |
-| `foto-alani-1x1` | 1:1 | 02, 06, 08 ve 10'daki tarif satırları |
+| `foto-alani-1x1` | 1:1 | 06 ve 08'deki tarif satırları |
 
 Kendi çektiğiniz gerçek bir fotoğraf varsa:
 
@@ -127,24 +155,28 @@ SVG'deki her ikon `sf-<ad>` adlı bir katmandır. Ad, SF Symbols'taki adla aynı
 
 | SF Symbols adı | Ekran | Anlamı |
 |---|---|---|
-| `house.fill` | Sekme çubuğu | Ana Sayfa |
-| `bookmark.fill` | Sekme çubuğu | Kayıtlı |
+| `refrigerator.fill` | Sekme çubuğu, 02b | Dolap |
+| `book.fill` | Sekme çubuğu | Tarifler |
 | `list.bullet` | Sekme çubuğu | Liste |
 | `chevron.backward` | Geri düğmesi | Geri |
 | `chevron.forward` | Tarif satırları | Detaya git |
+| `camera` | 02, 10 | Dolaba fotoğrafla ekle |
 | `rectangle.portrait.and.arrow.right` | 02, 10 | Çıkış |
-| `xmark` | 03, 05 | Kapat |
+| `xmark` | 02c, 03, 05 | Kapat |
 | `photo.on.rectangle` | 03 | Galeriden seç |
 | `questionmark.circle` | 04 | Emin olunmayan malzeme |
-| `plus` | 04, 09 | Ekle |
+| `plus` | 02, 09 | Ekle |
 | `magnifyingglass` | 04b, 08 | Bulunamadı, Ara |
 | `exclamationmark.triangle` | 06c | Hata |
-| `bookmark` | 07, 08b | Kaydet, Kayıtlı yok |
-| `square.and.arrow.up` | 09, 09b | Paylaş |
+| `bookmark` | 07 | Kaydet |
+| `book` | 08b | Kayıtlı tarif yok |
+| `square.and.arrow.up` | 09, 09b | Davet kodunu paylaş |
 | `cart` | 09b | Boş liste |
 | `wifi.slash` | 10 | İnternet yok |
 
-Onay daireleri (`circle`, `checkmark.circle.fill`) 09'da elle çizildi; kitteki liste satırının onay öğesiyle değiştirebilirsin.
+`refrigerator.fill` adını SF Symbols uygulamasında doğrulayamadım. Uygulamada bulamazsan dolabı en iyi anlatan sembolü seç.
+
+Onay daireleri 09'da elle çizildi; kitteki liste satırının onay öğesiyle değiştirebilirsin.
 
 ## 6. Prototip ayarları
 
@@ -154,22 +186,23 @@ Prototipi `Mockups` sayfasında kur, çünkü bir prototip tek sayfa içinde ça
 2. Tuvalde boş bir yere tıkla. **Device** için `Custom size` seçip 360x800 yaz.
 3. Şu çerçevelere **Flow starting point** ekle:
 
-| Başlangıç | Çerçeve |
-|---|---|
-| `Ana akış` | 01-giris |
-| `Çevrimdışı` | 10-cevrimdisi |
-| `Boş ve hata durumları` | 04b-malzeme-yok |
+| Başlangıç | Çerçeve | Ne gösterir |
+|---|---|---|
+| `Ana akış` | 01-giris | Giriş, dolap, tarama, tarif ve "Pişirdim" döngüsü |
+| `Bozulma bildirimi` | 02b-bozulma-bildirimi | Bildirimden tarife geçiş |
+| `Çevrimdışı` | 10-cevrimdisi | İnternet yokken dolap |
+| `Boş ve hata durumları` | 04b-malzeme-yok | Boş ve hata ekranları |
 
 ## 7. Geçişler
 
-iOS'taki üç temel geçişi kullan. Tabloda aksi yazmadıkça tetikleyici **On tap**.
+iOS'taki temel geçişleri kullan. Tabloda aksi yazmadıkça tetikleyici **On tap**.
 
 | Ad | iOS'taki karşılığı | Figma ayarı |
 |---|---|---|
 | Push | Listeden detaya geçiş | Animation: **Push**, yön sola (`←`), Ease In and Out, 350 ms |
 | Sheet | Alttan açılan sayfa | Animation: **Move in**, yön yukarı (`↑`), Ease Out, 350 ms |
 | Tam ekran | Kameranın açılması | Animation: **Move in**, yön yukarı (`↑`), Ease Out, 350 ms |
-| Fade | Durum değişimi | Animation: **Dissolve**, Ease Out, 200 ms |
+| Fade | Durum değişimi, uyarı | Animation: **Dissolve**, Ease Out, 200 ms |
 | Sekme | Sekmeler arası geçiş | **Instant** |
 | Geri | Geri, Kapat, sheet'i kapatma | Action: **Back** (Figma gelinen geçişi tersine oynatır) |
 | Tarif | Başlığın detay ekranına kayması | **Smart Animate**, Ease In and Out, 350 ms |
@@ -180,19 +213,36 @@ iOS'taki üç temel geçişi kullan. Tabloda aksi yazmadıkça tetikleyici **On 
 
 | Katman | Hedef | Geçiş |
 |---|---|---|
-| `btn-giris` | 02-ana-sayfa | Fade |
-| `btn-hesap-olustur` | 02-ana-sayfa | Fade |
+| `btn-giris` | 02-dolap | Fade |
+| `btn-hesap-olustur` | 02-dolap | Fade |
 
-### 02-ana-sayfa
+### 02-dolap
 
 | Katman | Hedef | Geçiş |
 |---|---|---|
-| `btn-fotograf-cek` | 03-tarama | Tam ekran |
-| `btn-malzeme-yaz` | 04-malzemeler | Push |
-| `satir-omlet` | 07-tarif-detay | Push |
+| `btn-tara` | 03-tarama | Tam ekran |
+| `btn-malzeme-yaz` | 04-yeni-malzemeler | Push |
+| `satir-yogurt` | 02c-malzeme-duzenle | Sheet |
+| `btn-ne-pisirsem` | 05-tercihler | Sheet |
 | `btn-cikis` | 01-giris | Fade |
-| `sekme-kayitli` | 08-kayitli | Sekme |
+| `sekme-tarifler` | 08-tarifler | Sekme |
 | `sekme-liste` | 09-alisveris-listesi | Sekme |
+
+### 02b-bozulma-bildirimi
+
+| Katman | Hedef | Geçiş |
+|---|---|---|
+| `bildirim` | 05-tercihler | Sheet |
+| `sekme-tarifler` | 08-tarifler | Sekme |
+| `sekme-liste` | 09-alisveris-listesi | Sekme |
+
+### 02c-malzeme-duzenle
+
+| Katman | Hedef | Geçiş |
+|---|---|---|
+| `btn-kaydet` | Önceki ekran | Geri |
+| `btn-kapat` | Önceki ekran | Geri |
+| `btn-dolaptan-cikar` | Önceki ekran | Geri |
 
 ### 03-tarama
 
@@ -209,29 +259,29 @@ iOS'taki üç temel geçişi kullan. Tabloda aksi yazmadıkça tetikleyici **On 
 | Çerçevenin kendisi | After delay, 1 ms | 03c-tarama-analiz-2 | Smart Animate, Linear, 1400 ms |
 | `btn-iptal` | On tap | 03-tarama | Fade |
 
-Beyaz `tarama-cizgisi` katmanı iki çerçevede aynı adı taşıdığı için Figma onu yukarıdan aşağı kaydırır. Çizgi hareket etmezse adların aynı olduğunu kontrol et.
+Beyaz `tarama-cizgisi` katmanı iki çerçevede aynı adı taşıdığı için Figma onu yukarıdan aşağı kaydırır.
 
 ### 03c-tarama-analiz-2
 
 | Katman | Tetikleyici | Hedef | Geçiş |
 |---|---|---|---|
-| Çerçevenin kendisi | After delay, 300 ms | 04-malzemeler | Fade |
+| Çerçevenin kendisi | After delay, 300 ms | 04-yeni-malzemeler | Fade |
 | `btn-iptal` | On tap | 03-tarama | Fade |
 
-### 04-malzemeler
+### 04-yeni-malzemeler
 
 | Katman | Hedef | Geçiş |
 |---|---|---|
-| `btn-devam` | 05-tercihler | Sheet |
+| `btn-dolaba-ekle` | 02-dolap | Fade |
 | `geri` | Önceki ekran | Geri |
 
-Kaydırarak silme, prototipte `Domates` satırında açık hâlde gösteriliyor. Figma'da kaydırma hareketi eklemek gerekmiyor.
+Kaydırarak silme, `Domates` satırında açık hâlde gösteriliyor. Figma'da kaydırma hareketi eklemek gerekmiyor.
 
 ### 04b-malzeme-yok
 
 | Katman | Hedef | Geçiş |
 |---|---|---|
-| `btn-malzeme-ekle` | 04-malzemeler | Fade |
+| `btn-malzeme-ekle` | 04-yeni-malzemeler | Fade |
 | `btn-yeniden-cek` | 03-tarama | Tam ekran |
 | `geri` | Önceki ekran | Geri |
 
@@ -269,56 +319,59 @@ Detay ekranı Patatesli Omlet'i gösterdiği için yalnızca bu satır bağlanı
 
 | Katman | Hedef | Geçiş |
 |---|---|---|
+| `btn-pisirdim` | 07b-pisirdim | Fade |
 | `btn-listeye-ekle` | 09-alisveris-listesi | Push |
-| `btn-kaydet` | 08-kayitli | Push |
+| `btn-kaydet` | 08-tarifler | Push |
 | `geri` | Önceki ekran | Geri |
 
-### 08-kayitli
+### 07b-pisirdim
+
+| Katman | Hedef | Geçiş |
+|---|---|---|
+| `btn-tamam` | 02-dolap | Fade |
+| `btn-vazgec` | Önceki ekran | Geri |
+
+### 08-tarifler
 
 | Katman | Hedef | Geçiş |
 |---|---|---|
 | `satir-omlet` | 07-tarif-detay | Push |
-| `sekme-ana-sayfa` | 02-ana-sayfa | Sekme |
+| `sekme-dolap` | 02-dolap | Sekme |
 | `sekme-liste` | 09-alisveris-listesi | Sekme |
 
-### 08b-kayitli-bos
+### 08b-tarifler-bos
 
 | Katman | Hedef | Geçiş |
 |---|---|---|
-| `sekme-ana-sayfa` | 02-ana-sayfa | Sekme |
+| `sekme-dolap` | 02-dolap | Sekme |
 | `sekme-liste` | 09-alisveris-listesi | Sekme |
 
 ### 09-alisveris-listesi
 
 | Katman | Hedef | Geçiş |
 |---|---|---|
-| `sekme-ana-sayfa` | 02-ana-sayfa | Sekme |
-| `sekme-kayitli` | 08-kayitli | Sekme |
+| `sekme-dolap` | 02-dolap | Sekme |
+| `sekme-tarifler` | 08-tarifler | Sekme |
 
 ### 09b-liste-bos
 
 | Katman | Hedef | Geçiş |
 |---|---|---|
 | `btn-urun-ekle` | 09-alisveris-listesi | Fade |
-| `sekme-ana-sayfa` | 02-ana-sayfa | Sekme |
-| `sekme-kayitli` | 08-kayitli | Sekme |
+| `sekme-dolap` | 02-dolap | Sekme |
+| `sekme-tarifler` | 08-tarifler | Sekme |
 
 ### 10-cevrimdisi
 
 | Katman | Hedef | Geçiş |
 |---|---|---|
-| `btn-tekrar-dene` | 02-ana-sayfa | Fade |
-| `satir-omlet` | 07-tarif-detay | Push |
-| `sekme-kayitli` | 08-kayitli | Sekme |
+| `btn-tekrar-dene` | 02-dolap | Fade |
+| `sekme-tarifler` | 08-tarifler | Sekme |
 | `sekme-liste` | 09-alisveris-listesi | Sekme |
-
-### Boş ve hata durumlarını gezmek
-
-`Boş ve hata durumları` akışında 04b'den başla. 06c, 08b ve 09b ekranlarını görmek için sol listeden ilgili çerçeveyi seç ya da her birine ayrı bir başlangıç noktası ekle.
 
 ## 9. Katman adları hakkında
 
-Bağlantı noktalarına anlamlı adlar verdim (`btn-…`, `satir-…`, `sekme-…`, `geri`). SVG aktarımını Figma'da deneyemedim. Bir katmanın adı farklı gelirse:
+Bağlantı noktalarına anlamlı adlar verdim (`btn-…`, `satir-…`, `sekme-…`, `geri`). Bir katmanın adı farklı gelirse:
 
 1. Katmanı görselinden seç ve tablodaki adı ver.
 2. Tıklanamayan bir alan olursa üzerine dolgusu %0 olan bir dikdörtgen çiz ve bağlantıyı ondan başlat.
@@ -327,10 +380,11 @@ Metin düğmelerinin çevresinde, 44 pt dokunma alanını gösteren görünmez d
 
 ## 10. Prototipi dene ve linkleri al
 
-1. **Present** ile şu yolu izle: Giriş → Ana Sayfa → Fotoğraf Çek → deklanşör → (animasyon) → Malzemeler → Devam Et → Tarif Öner → (yükleniyor) → Patatesli Omlet → kaydet.
-2. Alt sekmelerin üç sekme arasında çalıştığını kontrol et.
-3. Paylaşım iznini **Anyone with the link: can view** yap.
-4. Linkleri al ve kökteki `README.md` dosyasına yapıştır:
+1. **Present** ile ana döngüyü izle: Giriş → Dolap → kamera → deklanşör → (animasyon) → Yeni Malzemeler → Dolaba Ekle → Ne Pişirsem? → Tarif Öner → (yükleniyor) → Patatesli Omlet → Pişirdim → Tamam → Dolap.
+2. `Bozulma bildirimi` akışında bildirime dokunup tarif ekranına geçişi dene.
+3. Alt sekmelerin üç sekme arasında çalıştığını kontrol et.
+4. Paylaşım iznini **Anyone with the link: can view** yap.
+5. Linkleri al ve kökteki `README.md` dosyasına yapıştır:
 
 | Yer tutucu | Nasıl alınır |
 |---|---|
@@ -338,4 +392,4 @@ Metin düğmelerinin çevresinde, 44 pt dokunma alanını gösteren görünmez d
 | `[FIGMA MOCKUP LİNKİ]` | `Mockups` sayfası açıkken **Share → Copy link** |
 | `[FIGMA PROTOTİP LİNKİ]` | Present ekranında **Share prototype → Copy link** |
 
-5. Linkleri gizli pencerede açıp giriş yapmadan göründüğünü kontrol et.
+6. Linkleri gizli pencerede açıp giriş yapmadan göründüğünü kontrol et.

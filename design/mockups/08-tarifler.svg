@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="800" viewBox="0 0 360 800">
+<rect x="0" y="0" width="360" height="800" rx="0" fill="#F2F2F7"/>
+<g id="durum-cubugu">
+<text x="41.6" y="37" font-family="Inter" font-size="16" font-weight="600" fill="#000000">9:41</text>
+<rect x="268.0" y="31" width="3" height="3" rx="0.8" fill="#000000"/><rect x="272.5" y="29" width="3" height="5" rx="0.8" fill="#000000"/><rect x="277.0" y="27" width="3" height="7" rx="0.8" fill="#000000"/><rect x="281.5" y="25" width="3" height="9" rx="0.8" fill="#000000"/><path d="M292 28 Q299.5 21 307 28 M295 31 Q299.5 27 304 31" fill="none" stroke="#000000" stroke-width="1.8" stroke-linecap="round"/><circle cx="299.5" cy="34" r="1.5" fill="#000000"/><rect x="312" y="26" width="23" height="11" rx="3" fill="none" stroke="#000000" stroke-opacity="0.45"/><rect x="314" y="28" width="17" height="7" rx="1.5" fill="#000000"/><rect x="336" y="29.5" width="1.6" height="4" rx="0.8" fill="#000000" fill-opacity="0.45"/>
+</g>
+<text x="16.0" y="142" font-family="Inter" font-size="34" font-weight="700" fill="#000000">Tarifler</text>
+<g id="alan-tarif-ara">
+<rect x="16" y="156" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<rect x="16" y="158" width="328" height="40" rx="20" fill="#FFFFFF"/>
+<g id="sf-magnifyingglass" transform="translate(38 178) scale(0.8)"><circle cx="-2" cy="-2" r="6" fill="none" stroke="#6C6C70" stroke-width="1.7"/><path d="M2.5 2.5 L8 8" fill="none" stroke="#6C6C70" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="54.0" y="184" font-family="Inter" font-size="17" font-weight="400" fill="#6C6C70">Ara</text>
+</g>
+<text x="20.0" y="240" font-family="Inter" font-size="17" font-weight="600" fill="#000000">Kayıtlı</text>
+<rect x="16" y="252" width="328" height="256" rx="20" fill="#FFFFFF"/>
+<rect x="92" y="315.5" width="252" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="92" y="379.5" width="252" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="92" y="443.5" width="252" height="0.5" rx="0" fill="#C6C6C8"/>
+<g id="satir-menemen">
+<rect x="16" y="252" width="328" height="64" rx="0" fill="#000000" fill-opacity="0"/>
+<rect id="foto-alani-1x1" x="32" y="260" width="48" height="48" rx="8" fill="#E5E5EA"/>
+<text x="92.0" y="280" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Menemen</text>
+<text x="92.0" y="300" font-family="Inter" font-size="13" font-weight="400" fill="#6C6C70">15 dk · 2 kişilik</text>
+<g id="sf-chevron.forward" transform="translate(322 284.0) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#C7C7CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<g id="satir-mercimek">
+<rect x="16" y="316" width="328" height="64" rx="0" fill="#000000" fill-opacity="0"/>
+<rect id="foto-alani-1x1" x="32" y="324" width="48" height="48" rx="8" fill="#E5E5EA"/>
+<text x="92.0" y="344" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Mercimek Çorbası</text>
+<text x="92.0" y="364" font-family="Inter" font-size="13" font-weight="400" fill="#6C6C70">30 dk · 4 kişilik</text>
+<g id="sf-chevron.forward" transform="translate(322 348.0) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#C7C7CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<g id="satir-omlet">
+<rect x="16" y="380" width="328" height="64" rx="0" fill="#000000" fill-opacity="0"/>
+<rect id="foto-alani-1x1" x="32" y="388" width="48" height="48" rx="8" fill="#E5E5EA"/>
+<text x="92.0" y="408" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Patatesli Omlet</text>
+<text x="92.0" y="428" font-family="Inter" font-size="13" font-weight="400" fill="#6C6C70">20 dk · 2 kişilik</text>
+<g id="sf-chevron.forward" transform="translate(322 412.0) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#C7C7CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<g id="satir-fasulye">
+<rect x="16" y="444" width="328" height="64" rx="0" fill="#000000" fill-opacity="0"/>
+<rect id="foto-alani-1x1" x="32" y="452" width="48" height="48" rx="8" fill="#E5E5EA"/>
+<text x="92.0" y="472" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Zeytinyağlı Fasulye</text>
+<text x="92.0" y="492" font-family="Inter" font-size="13" font-weight="400" fill="#6C6C70">40 dk · 4 kişilik</text>
+<g id="sf-chevron.forward" transform="translate(322 476.0) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#C7C7CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<text x="32.0" y="532" font-family="Inter" font-size="13" font-weight="400" fill="#6C6C70">Kayıtlı tarifler internet olmadan da açılır.</text>
+<g id="sekme-cubugu">
+<rect x="21" y="717" width="318" height="62" rx="31" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="0.5"/>
+</g>
+<g id="sekme-dolap">
+<rect x="25" y="721" width="98" height="54" rx="27" fill="#000000" fill-opacity="0"/>
+<g id="sf-refrigerator.fill" transform="translate(74 739) scale(1.0)"><path d="M-7 -10 H7 Q8 -10 8 -9 V9 Q8 10 7 10 H-7 Q-8 10 -8 9 V-9 Q-8 -10 -7 -10 Z" fill="#000000"/><path d="M-8 -3 H8 M-4 -7.5 V-5.5 M-4 0 V4" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/></g>
+<text x="60.2" y="766" font-family="Inter" font-size="10" font-weight="500" fill="#000000">Dolap</text>
+</g>
+<g id="sekme-tarifler">
+<rect x="131" y="721" width="98" height="54" rx="27" fill="#F2F2F7"/>
+<g id="sf-book.fill" transform="translate(180 739) scale(1.0)"><path d="M0 -6 Q-5 -9 -10 -8 V8 Q-5 7 0 10 Q5 7 10 8 V-8 Q5 -9 0 -6 Z" fill="#B3401E"/><path d="M0 -6 V10" fill="none" stroke="#F2F2F7" stroke-width="1.6" stroke-linecap="round"/></g>
+<text x="162.3" y="766" font-family="Inter" font-size="10" font-weight="600" fill="#B3401E">Tarifler</text>
+</g>
+<g id="sekme-liste">
+<rect x="237" y="721" width="98" height="54" rx="27" fill="#000000" fill-opacity="0"/>
+<g id="sf-list.bullet" transform="translate(286 739) scale(1.0)"><path d="M-3 -6 H9 M-3 0 H9 M-3 6 H9" fill="none" stroke="#000000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="-6" r="1.4" fill="#000000"/><circle cx="-8" cy="0" r="1.4" fill="#000000"/><circle cx="-8" cy="6" r="1.4" fill="#000000"/></g>
+<text x="274.6" y="766" font-family="Inter" font-size="10" font-weight="500" fill="#000000">Liste</text>
+</g>
+<rect id="ana-ekran-cubugu" x="113" y="787" width="134" height="5" rx="2.5" fill="#000000"/>
+</svg>

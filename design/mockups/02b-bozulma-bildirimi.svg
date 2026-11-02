@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="800" viewBox="0 0 360 800">
+<rect x="0" y="0" width="360" height="800" rx="0" fill="#F2F2F7"/>
+<g id="durum-cubugu">
+<text x="41.6" y="37" font-family="Inter" font-size="16" font-weight="600" fill="#000000">9:41</text>
+<rect x="268.0" y="31" width="3" height="3" rx="0.8" fill="#000000"/><rect x="272.5" y="29" width="3" height="5" rx="0.8" fill="#000000"/><rect x="277.0" y="27" width="3" height="7" rx="0.8" fill="#000000"/><rect x="281.5" y="25" width="3" height="9" rx="0.8" fill="#000000"/><path d="M292 28 Q299.5 21 307 28 M295 31 Q299.5 27 304 31" fill="none" stroke="#000000" stroke-width="1.8" stroke-linecap="round"/><circle cx="299.5" cy="34" r="1.5" fill="#000000"/><rect x="312" y="26" width="23" height="11" rx="3" fill="none" stroke="#000000" stroke-opacity="0.45"/><rect x="314" y="28" width="17" height="7" rx="1.5" fill="#000000"/><rect x="336" y="29.5" width="1.6" height="4" rx="0.8" fill="#000000" fill-opacity="0.45"/>
+</g>
+<g id="btn-tara">
+<rect x="300" y="58" width="44" height="44" rx="22" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="0.5"/>
+<g id="sf-camera" transform="translate(322 80) scale(1.0)"><path d="M-10 -5 Q-10 -6 -9 -6 H-5 L-3 -9 H3 L5 -6 H9 Q10 -6 10 -5 V7 Q10 8 9 8 H-9 Q-10 8 -10 7 Z" fill="none" stroke="#000000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="1" r="4" fill="none" stroke="#000000" stroke-width="1.7"/></g>
+</g>
+<g id="btn-cikis">
+<rect x="248" y="58" width="44" height="44" rx="22" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="0.5"/>
+<g id="sf-rectangle.portrait.and.arrow.right" transform="translate(270 80) scale(1.0)"><path d="M2 -6 V-9 H-9 V9 H2 V6 M-3 0 H10 M6 -4 L10 0 L6 4" fill="none" stroke="#000000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
+<text x="16.0" y="142" font-family="Inter" font-size="34" font-weight="700" fill="#000000">Dolap</text>
+<text x="16.0" y="170" font-family="Inter" font-size="17" font-weight="400" fill="#6C6C70">Ev · 2 üye</text>
+<text x="20.0" y="208" font-family="Inter" font-size="17" font-weight="600" fill="#000000">Yakında bozulacak</text>
+<rect x="16" y="220" width="328" height="88" rx="20" fill="#FFFFFF"/>
+<rect x="32" y="263.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<g id="satir-yogurt">
+<rect x="16" y="220" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<text x="32.0" y="248.0" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Yoğurt</text>
+<text x="286.4" y="248.0" font-family="Inter" font-size="17" font-weight="400" fill="#6C6C70">Yarın</text>
+</g>
+<g id="satir-domates">
+<rect x="16" y="264" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<text x="32.0" y="292.0" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Domates</text>
+<text x="282.3" y="292.0" font-family="Inter" font-size="17" font-weight="400" fill="#6C6C70">2 gün</text>
+</g>
+<text x="20.0" y="344" font-family="Inter" font-size="17" font-weight="600" fill="#000000">Dolapta</text>
+<rect x="16" y="356" width="328" height="264" rx="20" fill="#FFFFFF"/>
+<rect x="32" y="399.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="443.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="487.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="531.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<rect x="32" y="575.5" width="312" height="0.5" rx="0" fill="#C6C6C8"/>
+<g id="satir-yumurta">
+<rect x="16" y="356" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<text x="32.0" y="384.0" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Yumurta</text>
+<text x="300.3" y="384.0" font-family="Inter" font-size="17" font-weight="400" fill="#6C6C70">Var</text>
+</g>
+<g id="satir-peynir">
+<rect x="16" y="400" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<text x="32.0" y="428.0" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Peynir</text>
+<text x="278.7" y="428.0" font-family="Inter" font-size="17" font-weight="400" fill="#6C6C70">Azaldı</text>
+</g>
+<g id="satir-patates">
+<rect x="16" y="444" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<text x="32.0" y="472.0" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Patates</text>
+<text x="300.3" y="472.0" font-family="Inter" font-size="17" font-weight="400" fill="#6C6C70">Var</text>
+</g>
+<g id="satir-sogan">
+<rect x="16" y="488" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<text x="32.0" y="516.0" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Soğan</text>
+<text x="300.3" y="516.0" font-family="Inter" font-size="17" font-weight="400" fill="#6C6C70">Var</text>
+</g>
+<g id="satir-maydanoz">
+<rect x="16" y="532" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<text x="32.0" y="560.0" font-family="Inter" font-size="17" font-weight="400" fill="#000000">Maydanoz</text>
+<text x="278.7" y="560.0" font-family="Inter" font-size="17" font-weight="400" fill="#6C6C70">Azaldı</text>
+</g>
+<g id="btn-malzeme-yaz">
+<rect x="16" y="576" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<g id="sf-plus" transform="translate(42 598) scale(1.0)"><path d="M0 -8 V8 M-8 0 H8" fill="none" stroke="#B3401E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="60.0" y="604" font-family="Inter" font-size="17" font-weight="400" fill="#B3401E">Malzeme Ekle</text>
+</g>
+<g id="btn-ne-pisirsem">
+<rect x="16" y="636" width="328" height="50" rx="25" fill="#B3401E"/>
+<text x="126.4" y="667" font-family="Inter" font-size="17" font-weight="600" fill="#FFFFFF">Ne Pişirsem?</text>
+</g>
+<g id="sekme-cubugu">
+<rect x="21" y="717" width="318" height="62" rx="31" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="0.5"/>
+</g>
+<g id="sekme-dolap">
+<rect x="25" y="721" width="98" height="54" rx="27" fill="#F2F2F7"/>
+<g id="sf-refrigerator.fill" transform="translate(74 739) scale(1.0)"><path d="M-7 -10 H7 Q8 -10 8 -9 V9 Q8 10 7 10 H-7 Q-8 10 -8 9 V-9 Q-8 -10 -7 -10 Z" fill="#B3401E"/><path d="M-8 -3 H8 M-4 -7.5 V-5.5 M-4 0 V4" fill="none" stroke="#F2F2F7" stroke-width="1.6" stroke-linecap="round"/></g>
+<text x="60.0" y="766" font-family="Inter" font-size="10" font-weight="600" fill="#B3401E">Dolap</text>
+</g>
+<g id="sekme-tarifler">
+<rect x="131" y="721" width="98" height="54" rx="27" fill="#000000" fill-opacity="0"/>
+<g id="sf-book.fill" transform="translate(180 739) scale(1.0)"><path d="M0 -6 Q-5 -9 -10 -8 V8 Q-5 7 0 10 Q5 7 10 8 V-8 Q5 -9 0 -6 Z" fill="#000000"/><path d="M0 -6 V10" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/></g>
+<text x="162.7" y="766" font-family="Inter" font-size="10" font-weight="500" fill="#000000">Tarifler</text>
+</g>
+<g id="sekme-liste">
+<rect x="237" y="721" width="98" height="54" rx="27" fill="#000000" fill-opacity="0"/>
+<g id="sf-list.bullet" transform="translate(286 739) scale(1.0)"><path d="M-3 -6 H9 M-3 0 H9 M-3 6 H9" fill="none" stroke="#000000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="-6" r="1.4" fill="#000000"/><circle cx="-8" cy="0" r="1.4" fill="#000000"/><circle cx="-8" cy="6" r="1.4" fill="#000000"/></g>
+<text x="274.6" y="766" font-family="Inter" font-size="10" font-weight="500" fill="#000000">Liste</text>
+</g>
+<rect id="ana-ekran-cubugu" x="113" y="787" width="134" height="5" rx="2.5" fill="#000000"/>
+<g id="bildirim">
+<rect x="8" y="50" width="344" height="84" rx="24" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="0.5"/>
+<rect x="20" y="62" width="38" height="38" rx="9" fill="#B3401E"/>
+<g id="sf-refrigerator.fill" transform="translate(39 81) scale(0.9)"><path d="M-7 -10 H7 Q8 -10 8 -9 V9 Q8 10 7 10 H-7 Q-8 10 -8 9 V-9 Q-8 -10 -7 -10 Z" fill="#FFFFFF"/><path d="M-8 -3 H8 M-4 -7.5 V-5.5 M-4 0 V4" fill="none" stroke="#B3401E" stroke-width="1.6" stroke-linecap="round"/></g>
+<text x="70.0" y="76" font-family="Inter" font-size="15" font-weight="600" fill="#000000">Dolaptan</text>
+<text x="307.5" y="76" font-family="Inter" font-size="13" font-weight="400" fill="#6C6C70">şimdi</text>
+<text x="70.0" y="97" font-family="Inter" font-size="15" font-weight="400" fill="#000000">Yoğurt yarın bozuluyor.</text>
+<text x="70.0" y="117" font-family="Inter" font-size="15" font-weight="400" fill="#000000">Bu akşam cacık yapabilirsin.</text>
+</g>
+</svg>
