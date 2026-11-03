@@ -10,36 +10,33 @@
 </g>
 <text x="16.0" y="142" font-family="Inter" font-size="34" font-weight="700" fill="#1A1A1A">Öneriler</text>
 <text x="16.0" y="170" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Önce bozulacaklara göre</text>
-<rect x="16" y="196" width="328" height="228" rx="20" fill="#FFFFFF"/>
-<rect x="100" y="271.5" width="244" height="0.5" rx="0" fill="#C8C8C8"/>
-<rect x="100" y="347.5" width="244" height="0.5" rx="0" fill="#C8C8C8"/>
 <g id="satir-menemen">
-<rect x="16" y="196" width="328" height="76" rx="0" fill="#000000" fill-opacity="0"/>
-<rect id="foto-alani-1x1" x="32" y="206" width="56" height="56" rx="10" fill="#DADADA"/>
-<text x="100.0" y="222" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Menemen</text>
-<text x="100.0" y="242" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">15 dk · 2 kişilik</text>
-<text x="100.0" y="260" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Domatesi değerlendirir</text>
-<g id="sf-chevron.forward" transform="translate(322 234) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#B0B0B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="16" y="200" width="328" height="112" rx="18" fill="#FFFFFF"/>
+<rect id="foto-alani-1x1" x="28" y="208" width="96" height="96" rx="12" fill="#DADADA"/>
+<text x="138.0" y="236" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Menemen</text>
+<text x="138.0" y="260" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">15 dk · 2 kişilik</text>
+<text x="138.0" y="284" font-family="Inter" font-size="13" font-weight="400" fill="#3A3A3A">Domatesi değerlendirir</text>
+<g id="sf-chevron.forward" transform="translate(322 256) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#B0B0B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 </g>
 <g id="satir-cacik">
-<rect x="16" y="272" width="328" height="76" rx="0" fill="#000000" fill-opacity="0"/>
-<rect id="foto-alani-1x1" x="32" y="282" width="56" height="56" rx="10" fill="#DADADA"/>
-<text x="100.0" y="298" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Cacık</text>
-<text x="100.0" y="318" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">10 dk · 2 kişilik</text>
-<text x="100.0" y="336" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Yoğurdu değerlendirir</text>
-<g id="sf-chevron.forward" transform="translate(322 310) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#B0B0B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="16" y="324" width="328" height="112" rx="18" fill="#FFFFFF"/>
+<rect id="foto-alani-1x1" x="28" y="332" width="96" height="96" rx="12" fill="#DADADA"/>
+<text x="138.0" y="360" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Cacık</text>
+<text x="138.0" y="384" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">10 dk · 2 kişilik</text>
+<text x="138.0" y="408" font-family="Inter" font-size="13" font-weight="400" fill="#3A3A3A">Yoğurdu değerlendirir</text>
+<g id="sf-chevron.forward" transform="translate(322 380) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#B0B0B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 </g>
 <g id="satir-omlet">
-<rect x="16" y="348" width="328" height="76" rx="0" fill="#000000" fill-opacity="0"/>
-<rect id="foto-alani-1x1" x="32" y="358" width="56" height="56" rx="10" fill="#DADADA"/>
-<text id="tarif-baslik" x="100.0" y="374" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Patatesli Omlet</text>
-<text x="100.0" y="394" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">20 dk · 2 kişilik</text>
-<text x="100.0" y="412" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Eksik: Tereyağı</text>
-<g id="sf-chevron.forward" transform="translate(322 386) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#B0B0B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="16" y="448" width="328" height="112" rx="18" fill="#FFFFFF"/>
+<rect id="foto-alani-1x1" x="28" y="456" width="96" height="96" rx="12" fill="#DADADA"/>
+<text id="tarif-baslik" x="138.0" y="484" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Patatesli Omlet</text>
+<text x="138.0" y="508" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">20 dk · 2 kişilik</text>
+<text x="138.0" y="532" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Eksik: Tereyağı</text>
+<g id="sf-chevron.forward" transform="translate(322 504) scale(1)"><path d="M-3 -6 L3 0 L-3 6" fill="none" stroke="#B0B0B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
 </g>
 <g id="btn-baska-tarif">
-<rect x="86.4" y="440" width="187.2" height="44" rx="22" fill="#000000" fill-opacity="0"/>
-<text x="102.4" y="468" font-family="Inter" font-size="17" font-weight="400" fill="#3A3A3A">Başka Tarifler Öner</text>
+<rect x="86.4" y="584" width="187.2" height="44" rx="22" fill="#000000" fill-opacity="0"/>
+<text x="102.4" y="612" font-family="Inter" font-size="17" font-weight="400" fill="#3A3A3A">Başka Tarifler Öner</text>
 </g>
 <rect id="ana-ekran-cubugu" x="113" y="787" width="134" height="5" rx="2.5" fill="#1A1A1A"/>
 </svg>

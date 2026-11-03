@@ -10,6 +10,8 @@ from xml.sax.saxutils import escape
 
 from fontTools.ttLib import TTFont
 
+from illustrations import NAME_TO_DISH, TINT, dish_svg, hero_garnish
+
 BASE = Path(__file__).resolve().parents[1]
 ROOT = BASE / "design"
 FONTS = BASE / "tools" / "fonts"
@@ -17,25 +19,30 @@ W, H = 360, 800
 M = 16                 # side margin
 GX, GW = 16, 328       # inset grouped list
 RADIUS = 20
+ROW = 52               # pantry rows: room for a 36 pt ingredient painting
 TAB_Y = 717            # floating tab bar: 21 pt from the bottom edge
 
 LIGHT = {
-    "bg": "#F2F2F7", "surface": "#FFFFFF", "text": "#000000", "text2": "#6C6C70",
-    "sep": "#C6C6C8", "accent": "#B3401E", "on_accent": "#FFFFFF", "fill": "#E3E3E8",
-    "thumb": "#FFFFFF", "glass": "#FFFFFF", "glass_line": "#E5E5EA", "tabsel": "#F2F2F7",
-    "photo": "#E5E5EA", "dim": "#C7C7CC", "gray3": "#C7C7CC", "control": "#6C6C70",
-    "red": "#E9152D", "on_red": "#FFFFFF", "red_text": "#E9152D", "switch_off": "#E9E9EA",
-    "sheet": "#F2F2F7", "sheet_cell": "#FFFFFF",
-    "cam": "#000000", "preview": "#1C1C1E", "cam_text": "#FFFFFF", "cam_glass": "#3A3A3C",
+    "bg": "#F7EBDD", "surface": "#FFFAF3", "text": "#2B1D14", "text2": "#6B5646",
+    "sep": "#E8D7C2", "accent": "#B3401E", "on_accent": "#FFFFFF", "fill": "#EFDFCB",
+    "thumb": "#FFFFFF", "glass": "#FFFAF3", "glass_line": "#E8D7C2", "tabsel": "#F7EBDD",
+    "photo": "#F2E3CF", "dim": "#BFAE9C", "gray3": "#C9B6A1", "control": "#6B5646",
+    "red": "#C4281C", "on_red": "#FFFFFF", "red_text": "#B3261A", "switch_off": "#E8D7C2",
+    "sheet": "#F7EBDD", "sheet_cell": "#FFFAF3",
+    "herb": "#3B6E35", "tag_red": "#FAE4DB", "tag_green": "#E0ECD6", "tag_yellow": "#F7E6B5",
+    "tag_text_y": "#7A5200", "rule": "#EADBC6", "ink": "#2B1D14", "tape": "#E9C46A",
+    "cam": "#000000", "preview": "#1C1C1E", "cam_text": "#FFFFFF", "cam_glass": "#3A3A3C", "on_paint": "#000000",
 }
 DARK = {
-    "bg": "#000000", "surface": "#1C1C1E", "text": "#FFFFFF", "text2": "#AEAEB2",
-    "sep": "#38383A", "accent": "#FF8A65", "on_accent": "#000000", "fill": "#2C2C2E",
-    "thumb": "#636366", "glass": "#2C2C2E", "glass_line": "#3A3A3C", "tabsel": "#3A3A3C",
-    "photo": "#2C2C2E", "dim": "#000000", "gray3": "#48484A", "control": "#AEAEB2",
-    "red": "#E9152D", "on_red": "#FFFFFF", "red_text": "#FF6165", "switch_off": "#39393D",
-    "sheet": "#1C1C1E", "sheet_cell": "#2C2C2E",
-    "cam": "#000000", "preview": "#1C1C1E", "cam_text": "#FFFFFF", "cam_glass": "#3A3A3C",
+    "bg": "#1B1511", "surface": "#2A211B", "text": "#F7EBDD", "text2": "#C8B6A3",
+    "sep": "#3E332A", "accent": "#FF8A65", "on_accent": "#1B1511", "fill": "#3A2F27",
+    "thumb": "#5C4D41", "glass": "#2A211B", "glass_line": "#3E332A", "tabsel": "#3A2F27",
+    "photo": "#3A2F27", "dim": "#000000", "gray3": "#5A4C40", "control": "#C8B6A3",
+    "red": "#E9152D", "on_red": "#FFFFFF", "red_text": "#FF6F61", "switch_off": "#3E332A",
+    "sheet": "#2A211B", "sheet_cell": "#3A2F27",
+    "herb": "#9CCB8C", "tag_red": "#4A271D", "tag_green": "#263821", "tag_yellow": "#40341A",
+    "tag_text_y": "#EBC66A", "rule": "#251D17", "ink": "#F7EBDD", "tape": "#8C6A2B",
+    "cam": "#000000", "preview": "#1C1C1E", "cam_text": "#FFFFFF", "cam_glass": "#3A3A3C", "on_paint": "#000000",
 }
 WIRE = {
     "bg": "#F2F2F2", "surface": "#FFFFFF", "text": "#1A1A1A", "text2": "#5E5E5E",
@@ -44,9 +51,34 @@ WIRE = {
     "photo": "#DADADA", "dim": "#C8C8C8", "gray3": "#B0B0B0", "control": "#5E5E5E",
     "red": "#3A3A3A", "on_red": "#FFFFFF", "red_text": "#3A3A3A", "switch_off": "#DADADA",
     "sheet": "#F2F2F2", "sheet_cell": "#FFFFFF",
-    "cam": "#222222", "preview": "#444444", "cam_text": "#FFFFFF", "cam_glass": "#555555",
+    "herb": "#3A3A3A", "tag_red": "#E2E2E2", "tag_green": "#E2E2E2", "tag_yellow": "#E2E2E2",
+    "tag_text_y": "#3A3A3A", "rule": "#F2F2F2", "ink": "#1A1A1A", "tape": "#CCCCCC",
+    "cam": "#222222", "preview": "#444444", "cam_text": "#FFFFFF", "cam_glass": "#555555", "on_paint": "#1A1A1A",
 }
 MOCK = LIGHT  # kept for older imports
+
+# Hand-painted gouache illustrations (design/cizimler/web), embedded into the mockups.
+import base64
+def _uri(f):
+    mime = "image/png" if f.suffix == ".png" else "image/jpeg"
+    return f"data:{mime};base64," + base64.b64encode(f.read_bytes()).decode()
+
+
+WEB = ROOT / "cizimler" / "web"
+PAINTED = {f.stem: _uri(f) for f in WEB.glob("*.jpg")}
+# m- ingredients, s- scenes (cream, framed), d- small doodles, k- cover vignettes (transparent PNG)
+for prefix, folder in (("m", "malzeme"), ("s", "sahne"), ("d", "sus"), ("k", "kapak")):
+    PAINTED.update({f"{prefix}-{f.stem}": _uri(f) for f in sorted((WEB / folder).glob("*.*"))})
+SCENE_DOODLES = {"buyutec": ("biber", "maydanoz"), "tencere": ("defne", "karabiber"),
+                 "defter": ("kasik", "dereotu"), "sepet": ("limon", "sarimsak")}
+import itertools
+CLIP_IDS = itertools.count(1)   # unique across all files, so screens can share one HTML page
+# pantry / list names -> ingredient painting
+INGREDIENT = {"Yoğurt": "yogurt", "Domates": "domates", "Yumurta": "yumurta", "Patates": "patates",
+              "Soğan": "sogan", "Peynir": "peynir", "Maydanoz": "maydanoz", "Biber": "biber",
+              "Tereyağı": "tereyagi", "Salatalık": "salatalik", "Ekmek": "ekmek", "Süt": "sut"}
+# state / expiry label -> tag colours (background, text)
+TAGS = {"Yarın": ("tag_red", "accent"), "Var": ("tag_green", "herb"), "Azaldı": ("tag_yellow", "tag_text_y")}
 
 WEIGHTS = {400: "Regular", 500: "Medium", 600: "SemiBold", 700: "Bold"}
 METRICS = {}
@@ -55,8 +87,49 @@ for weight, name in WEIGHTS.items():
     METRICS[weight] = (font.getBestCmap(), font["hmtx"].metrics, font["head"].unitsPerEm)
 
 
-def text_width(s, size, weight):
-    cmap, hmtx, upem = METRICS[weight]
+# notebook handwriting fonts (OFL): Patrick Hand for text, Caveat Bold for titles and emphasis
+for family, file in (("Patrick Hand", "PatrickHand-Regular"), ("Caveat", "Caveat-Bold")):
+    font = TTFont(FONTS / f"{file}.ttf", lazy=True)
+    METRICS[family] = (font.getBestCmap(), font["hmtx"].metrics, font["head"].unitsPerEm)
+
+
+def wobble_rect(x, y, w, h, r, seed):
+    """Rounded rectangle drawn with a slightly unsteady hand."""
+    rng = random.Random(seed)
+    j = lambda: rng.uniform(-0.9, 0.9)
+    r = min(r, h / 2, w / 2)
+    pts = [f"M{x + r:.1f} {y + j():.1f}", f"L{x + w * 0.5:.1f} {y + j():.1f}", f"L{x + w - r:.1f} {y + j():.1f}",
+           f"Q{x + w + j():.1f} {y + j():.1f} {x + w + j():.1f} {y + r:.1f}",
+           f"L{x + w + j():.1f} {y + h * 0.5:.1f}", f"L{x + w + j():.1f} {y + h - r:.1f}",
+           f"Q{x + w + j():.1f} {y + h + j():.1f} {x + w - r:.1f} {y + h + j():.1f}",
+           f"L{x + w * 0.5:.1f} {y + h + j():.1f}", f"L{x + r:.1f} {y + h + j():.1f}",
+           f"Q{x + j():.1f} {y + h + j():.1f} {x + j():.1f} {y + h - r:.1f}",
+           f"L{x + j():.1f} {y + h * 0.5:.1f}", f"L{x + j():.1f} {y + r:.1f}",
+           f"Q{x + j():.1f} {y + j():.1f} {x + r:.1f} {y + j():.1f}Z"]
+    return " ".join(pts)
+
+
+def wobble_circle(cx, cy, r, seed):
+    rng = random.Random(seed)
+    n = 10
+    pts = []
+    for i in range(n):
+        a = 2 * math.pi * i / n
+        rr = r + rng.uniform(-0.6, 0.6)
+        pts.append((cx + rr * math.cos(a), cy + rr * math.sin(a)))
+    mids = [((pts[i][0] + pts[(i + 1) % n][0]) / 2, (pts[i][1] + pts[(i + 1) % n][1]) / 2) for i in range(n)]
+    d = f"M{mids[-1][0]:.1f} {mids[-1][1]:.1f}"
+    for i in range(n):
+        d += f" Q{pts[i][0]:.1f} {pts[i][1]:.1f} {mids[i][0]:.1f} {mids[i][1]:.1f}"
+    return d + "Z"
+
+
+import math
+import random
+
+
+def text_width(s, size, weight, family="Inter"):
+    cmap, hmtx, upem = METRICS[weight if family == "Inter" else family]
     return sum(hmtx[cmap[ord(ch)]][0] for ch in s) * size / upem
 
 
@@ -107,13 +180,23 @@ class Screen:
         self.c = theme
         self.wire = wire
         self.parts, self.rects, self.texts, self.targets, self.stack = [], [], [], [], []
+        self.seed = 0
         self.r(0, 0, W, H, "bg")
+        if not wire:   # faint ruled lines, like a notebook page
+            lines = "".join(f'<line x1="0" y1="{y}" x2="{W}" y2="{y}" stroke="{theme["rule"]}" stroke-width="1"/>'
+                            for y in range(196, H, 28))
+            self.parts.append(f'<g id="defter-cizgileri">{lines}</g>')
 
     # primitives ---------------------------------------------------------------------------
     def r(self, x, y, w, h, fill="surface", rx=0, stroke=None, id=None):
         i = f' id="{id}"' if id else ""
         if fill is None:   # invisible hotspot, used as a prototype target in Figma
             self.parts.append(f'<rect{i} x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="#000000" fill-opacity="0"/>')
+        elif not self.wire and rx > 0 and h >= 10 and w >= 20:   # hand-drawn box with an ink outline
+            self.seed += 1
+            d = wobble_rect(x, y, w, h, rx, self.seed * 7919 + int(x * 13 + y))
+            self.parts.append(f'<path{i} d="{d}" fill="{self.c[fill]}" stroke="{self.c["ink"]}" '
+                              f'stroke-opacity="0.55" stroke-width="1.2" stroke-linejoin="round"/>')
         else:
             s = f' stroke="{self.c[stroke]}" stroke-width="0.5"' if stroke else ""
             self.parts.append(f'<rect{i} x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{self.c[fill]}"{s}/>')
@@ -121,14 +204,79 @@ class Screen:
 
     def circle(self, cx, cy, r, fill=None, stroke=None, width=1.5):
         f = self.c[fill] if fill else "none"
+        if not self.wire and r >= 8:
+            self.seed += 1
+            s = f' stroke="{self.c[stroke]}" stroke-width="{width}"' if stroke else ""
+            self.parts.append(f'<path d="{wobble_circle(cx, cy, r, self.seed * 31 + int(cx + cy))}" fill="{f}"{s}/>')
+            return
         s = f' stroke="{self.c[stroke]}" stroke-width="{width}"' if stroke else ""
         self.parts.append(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{f}"{s}/>')
 
-    def t(self, x, y, s, size=17, fill="text", weight=400, anchor="start", id=None):
-        width = text_width(s, size, weight)
+    def painting(self, x, y, w, h, key, rx=0, id=None):
+        """Embed a hand-painted gouache image (cream paper background)."""
+        data = PAINTED.get(key)
+        if self.wire or not data:
+            self.r(x, y, w, h, "photo", rx, id=id)
+            return
+        i = f' id="{id}"' if id else f' id="cizim-{key}"'
+        if data.startswith("data:image/png"):   # transparent cut-out: no clip, no background
+            self.parts.append(f'<image{i} x="{x}" y="{y}" width="{w}" height="{h}" href="{data}"/>')
+            return
+        cid = f"kirp-{next(CLIP_IDS)}"
+        self.parts.append(f'<clipPath id="{cid}"><rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}"/></clipPath>'
+                          f'<image{i} x="{x}" y="{y}" width="{w}" height="{h}" preserveAspectRatio="xMidYMid slice" '
+                          f'clip-path="url(#{cid})" href="{data}"/>')
+        self.rects.append((x, y, w, h, "#F7EBDD"))
+
+    def doodle(self, cx, cy, size, key, angle=0):
+        """A small painted cut-out dropped onto the page (mockups only)."""
+        data = PAINTED.get(key)
+        if self.wire or not data:
+            return
+        self.parts.append(f'<image id="sus-{key[2:]}" x="{cx - size / 2:.1f}" y="{cy - size / 2:.1f}" width="{size}" '
+                          f'height="{size}" transform="rotate({angle} {cx} {cy})" href="{data}"/>')
+
+    def polaroid(self, cx, cy, size, key, angle=-3):
+        """A painting stuck into the notebook: white border, slight tilt, a strip of tape."""
+        pad, bottom = 8, 22
+        w, h = size + 2 * pad, size + pad + bottom
+        x, y = cx - w / 2, cy - h / 2
+        self.parts.append(f'<g id="polaroid-{key}" transform="rotate({angle} {cx} {cy})">')
+        self.r(x, y, w, h, "surface", 6)
+        self.painting(x + pad, y + pad, size, size, key, 3)
+        self.parts.append(f'<rect id="bant" x="{cx - 30}" y="{y - 9}" width="60" height="18" fill="{self.c["tape"]}" '
+                          f'fill-opacity="0.75" transform="rotate({-angle * 2} {cx} {y})"/>')
+        self.parts.append("</g>")
+
+    def tag(self, right, cy, label, kind=None):
+        """Coloured pill used for states and expiry (Var, Azaldı, Yarın, 2 gün)."""
+        bg, fg = TAGS.get(label, ("tag_yellow", "tag_text_y")) if kind is None else kind
+        w = self.tw(label, 15, 600) + 20
+        self.r(round(right - w, 1), cy - 13, round(w, 1), 26, bg, 13)
+        self.t(right - w / 2, cy + 5.5, label, 15, fg, 600, "middle")
+
+    def font(self, size, weight, family=None):
+        """Resolve the font actually drawn: handwriting on mockups, Inter on wireframes and system chrome."""
+        if self.wire:
+            return "Inter", size, weight
+        if family is None or family == "Fraunces":
+            if family == "Fraunces" or weight >= 600:
+                return "Caveat", round(size * 1.3, 1), 700
+            return "Patrick Hand", round(size * 1.1, 1), 400   # its x-height is smaller than Inter's
+        if family == "Caveat":
+            return family, size, 700
+        return family, size, weight
+
+    def tw(self, s, size, weight=400, family=None):
+        f, sz, wt = self.font(size, weight, family)
+        return text_width(s, sz, wt, f)
+
+    def t(self, x, y, s, size=17, fill="text", weight=400, anchor="start", id=None, family=None):
+        family, size, weight = self.font(size, weight, family)
+        width = text_width(s, size, weight, family)
         left = {"start": x, "middle": x - width / 2, "end": x - width}[anchor]
         i = f' id="{id}"' if id else ""
-        self.parts.append(f'<text{i} x="{left:.1f}" y="{y}" font-family="Inter" font-size="{size}" '
+        self.parts.append(f'<text{i} x="{left:.1f}" y="{y}" font-family="{family}" font-size="{size}" '
                           f'font-weight="{weight}" fill="{self.c[fill]}">{escape(s)}</text>')
         self.texts.append((left, y - size * 0.76, width, size * 0.98, s, size, self.c[fill], len(self.rects)))
 
@@ -180,7 +328,7 @@ class Screen:
     # system chrome ------------------------------------------------------------------------
     def status(self, color="text"):
         self.open("durum-cubugu")
-        self.t(58, 37, "9:41", 16, color, 600, "middle")
+        self.t(58, 37, "9:41", 16, color, 600, "middle", family="Inter")
         c = self.c[color]
         bars = "".join(f'<rect x="{268 + i * 4.5}" y="{34 - 3 - i * 2}" width="3" height="{3 + i * 2}" rx="0.8" fill="{c}"/>'
                        for i in range(4))
@@ -202,14 +350,16 @@ class Screen:
         self.close()
 
     def prominent_pill(self, right, y, label, id):
-        w = text_width(label, 17, 600) + 32
+        w = self.tw(label, 17, 600) + 32
         self.open(id)
         self.r(round(right - w, 1), y, round(w, 1), 44, "accent", 22)
         self.t(right - w / 2, y + 28, label, 17, "on_accent", 600, "middle")
         self.close()
 
-    def navbar(self, title, sub=None, back=True, trailing=(), title_id=None):
+    def navbar(self, title, sub=None, back=True, trailing=(), title_id=None, cover=None):
         self.status()
+        if cover:
+            self.doodle(W - M - 50, 150, 96, f"k-{cover}", 0)
         if back:
             self.glass_button(M, 58, "chevron.backward", "geri")
         x = W - M
@@ -217,7 +367,7 @@ class Screen:
             x -= 44
             self.glass_button(x, 58, icon, id)
             x -= 8
-        self.t(M, 142, title, 34, "text", 700, id=title_id)
+        self.t(M, 142, title, 34, "text", 700, id=title_id, family="Fraunces")
         if sub:
             self.t(M, 170, sub, 17, "text2")
 
@@ -238,8 +388,17 @@ class Screen:
         self.home_indicator()
 
     # content ------------------------------------------------------------------------------
-    def header(self, y, text):
-        self.t(20, y, text, 17, "text", 600)
+    def header(self, y, text, color="accent", doodle=None, angle=-12):
+        if doodle and not self.wire:
+            self.doodle(20 + self.tw(text, 26, 700, "Caveat") + 26, y - 8, 36, f"d-{doodle}", angle)
+        if self.wire:
+            self.t(20, y, text, 17, "text", 600)
+        else:
+            self.t(20, y + 2, text, 26, color, 700, family="Caveat")
+            w = text_width(text, 26, 700, "Caveat")
+            self.parts.append(f'<path d="M20 {y + 7} Q{20 + w * 0.3:.1f} {y + 4} {20 + w * 0.55:.1f} {y + 7} '
+                              f'T{20 + w + 6:.1f} {y + 6}" fill="none" stroke="{self.c[color]}" stroke-opacity="0.45" '
+                              f'stroke-width="2.4" stroke-linecap="round"/>')
 
     def footer(self, y, lines):
         for i, line in enumerate(lines):
@@ -265,29 +424,60 @@ class Screen:
         self.close()
 
     def plain(self, y, label, id, cx=W / 2, weight=400):
-        w = text_width(label, 17, weight) + 32
+        w = self.tw(label, 17, weight) + 32
         self.open(id)
         self.r(round(cx - w / 2, 1), y, round(w, 1), 44, None, 22)
         self.t(cx, y + 28, label, 17, "accent", weight, "middle")
         self.close()
 
-    def photo(self, x, y, w, h, ratio, rx=0):
+    def photo(self, x, y, w, h, ratio, rx=0, dish=None):
+        if dish and not self.wire and PAINTED:  # hand-painted gouache illustration
+            name = f"{dish}-16x9" if ratio == "16x9" else f"{dish}-kare"
+            data = PAINTED.get(name)
+            if data:
+                cid = f"kirp-{next(CLIP_IDS)}"
+                self.parts.append(f'<clipPath id="{cid}"><rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}"/></clipPath>'
+                                  f'<image id="cizim-{dish}" x="{x}" y="{y}" width="{w}" height="{h}" '
+                                  f'preserveAspectRatio="xMidYMid slice" clip-path="url(#{cid})" '
+                                  f'href="{data}"/>')
+                self.rects.append((x, y, w, h, "#F7EBDD"))
+                return
+        if dish and not self.wire:  # flat dish illustration on a tinted tile
+            tint = TINT[dish] if self.c is LIGHT else self.c["photo"]
+            self.parts.append(f'<rect id="foto-alani-{ratio}" x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{tint}"/>')
+            self.rects.append((x, y, w, h, tint))
+            if ratio == "16x9":
+                self.parts.append(hero_garnish(dish))
+                self.parts.append(dish_svg(dish, x + w / 2, y + h / 2 + 14, h / 100 * 0.78))
+            else:
+                self.parts.append(dish_svg(dish, x + w / 2, y + h / 2, w / 100 * 0.9))
+            return
         self.r(x, y, w, h, "photo", rx, id=f"foto-alani-{ratio}")
+        if not self.wire:  # a quiet placeholder icon, so the empty photo slot reads as intended
+            self.icon("fork.knife", x + w / 2, y + h / 2, "gray3", 0.8 if w < 100 else 1.6, 1.6)
         if self.wire and w > 100:
             self.t(x + w / 2, y + h - 20, f"Fotoğraf alanı ({ratio.replace('x', ':')})", 13, "text2", 400, "middle")
 
     def recipe_row(self, top, name, meta, id, h=64, title_id=None):
         self.open(id)
         self.r(GX, top, GW, h, None)
-        self.photo(32, top + 8, 48, 48, "1x1", 8)
+        self.photo(32, top + 8, 48, 48, "1x1", 8, NAME_TO_DISH.get(name))
         self.t(92, top + 28, name, 17, "text", 400, id=title_id)
         self.t(92, top + 48, meta, 13, "text2")
         self.icon("chevron.forward", 322, top + h / 2, "gray3", 1, 2)
         self.close()
 
-    def unavailable(self, cy, icon, title, lines):
-        self.icon(icon, W / 2, cy, "text2", 2.0, 1.4)
-        self.t(W / 2, cy + 52, title, 22, "text", 700, "middle")
+    def unavailable(self, cy, icon, title, lines, scene=None):
+        if scene and not self.wire:
+            left, right = SCENE_DOODLES.get(scene, (None, None))
+            if left:
+                self.doodle(W / 2 - 96, cy - 78, 48, f"d-{left}", -18)
+            if right:
+                self.doodle(W / 2 + 96, cy - 22, 48, f"d-{right}", 16)
+            self.polaroid(W / 2, cy - 50, 104, f"s-{scene}", -3)
+        else:
+            self.icon(icon, W / 2, cy, "text2", 2.0, 1.4)
+        self.t(W / 2, cy + 52, title, 22, "text", 700, "middle", family="Fraunces")
         for i, line in enumerate(lines):
             self.t(W / 2, cy + 80 + i * 22, line, 17, "text2", 400, "middle")
         return cy + 80 + (len(lines) - 1) * 22
@@ -326,34 +516,55 @@ def login(s):
     s.close()
     s.prominent(304, "Giriş Yap", "btn-giris")
     s.plain(362, "Hesap Oluştur", "btn-hesap-olustur")
+    s.plain(406, "Hesapsız Dene", "btn-hesapsiz", weight=400)
+    if not s.wire:
+        s.polaroid(W / 2, 600, 180, "s-dolap-dolu", 3)
+        s.doodle(50, 520, 60, "d-maydanoz", -20)
+        s.doodle(314, 500, 50, "d-limon", 12)
+        s.doodle(310, 690, 64, "d-biber", 28)
+        s.doodle(54, 700, 52, "d-cay", -8)
     s.home_indicator()
 
 
-def value_row(s, y, name, value, id, h=44, value_color="text2"):
+def thumb(s, x, cy, d, name):
+    """Round ingredient painting; an empty circle on wireframes."""
+    key = INGREDIENT.get(name)
+    if s.wire or not key:
+        s.r(x, cy - d / 2, d, d, "photo", d / 2)
+    else:
+        s.painting(x, cy - d / 2, d, d, f"m-{key}", d / 2)
+
+
+def value_row(s, y, name, value, id, h=ROW, value_color="text2"):
     s.open(id)
     s.r(GX, y, GW, h, None)
-    s.t(32, y + h / 2 + 6, name, 17)
+    d = 36 if h >= 52 else 30
+    thumb(s, 28, y + h / 2, d, name)
+    s.t(28 + d + 12, y + h / 2 + 6, name, 17)
     if value:
-        s.t(328, y + h / 2 + 6, value, 17, value_color, 400, "end")
+        if value in TAGS or value.endswith("gün"):
+            s.tag(330, y + h / 2, value)
+        else:
+            s.t(328, y + h / 2 + 6, value, 17, value_color, 400, "end")
     s.close()
 
 
 def pantry_sections(s, top, soon, have):
-    s.header(top, "Yakında bozulacak")
-    tops = s.group(top + 12, [44] * len(soon), 32)
+    s.header(top, "Yakında bozulacak", doodle="biber", angle=20)
+    tops = s.group(top + 12, [ROW] * len(soon), 76)
     for y, (name, when, id) in zip(tops, soon):
         value_row(s, y, name, when, id)
-    y2 = top + 12 + 44 * len(soon) + 36
-    s.header(y2, "Dolapta")
+    y2 = top + 12 + ROW * len(soon) + 36
+    s.header(y2, "Dolapta", "herb", doodle="maydanoz")
     return y2 + 12
 
 
 def pantry(s, notify=False):
-    s.navbar("Dolap", "Ev · 2 üye", back=False,
+    s.navbar("Dolap", "Ev · 2 üye", back=False, cover="raf",
              trailing=[("camera", "btn-tara"), ("rectangle.portrait.and.arrow.right", "btn-cikis")])
     start = pantry_sections(s, 208, [("Yoğurt", "Yarın", "satir-yogurt"), ("Domates", "2 gün", "satir-domates")], None)
-    have = [("Yumurta", "Var"), ("Peynir", "Azaldı"), ("Patates", "Var"), ("Soğan", "Var"), ("Maydanoz", "Azaldı")]
-    tops = s.group(start, [44] * (len(have) + 1), 32)
+    have = [("Yumurta", "Var"), ("Peynir", "Azaldı"), ("Patates", "Var"), ("Maydanoz", "Azaldı")]
+    tops = s.group(start, [ROW] * len(have) + [44], [76] * len(have))
     for y, (name, state) in zip(tops, have):
         value_row(s, y, name, state, f"satir-{name.lower().replace('ğ', 'g').replace('ı', 'i')}")
     s.open("btn-malzeme-yaz")
@@ -390,12 +601,12 @@ def edit_item(s):
     s.prominent_pill(W - M, 78, "Kaydet", "btn-kaydet")
     s.header(158, "Durum")
     s.segmented(170, ["Var", "Azaldı", "Bitti"], 0, "secim-durum")
-    s.header(236, "Son kullanma")
+    s.header(236, "Son kullanma", doodle="sarimsak")
     tops = s.group(248, [44, 44], 32, "sheet_cell")
     s.open("btn-tarih")
     s.r(GX, tops[0], GW, 44, None)
     s.t(32, tops[0] + 28, "Tarih", 17)
-    w = text_width("3 Kas 2026", 17, 400) + 22
+    w = s.tw("3 Kas 2026", 17, 400) + 22
     s.r(round(328 - w, 1), tops[0] + 7, round(w, 1), 30, "fill", 8)
     s.t(328 - 11, tops[0] + 28, "3 Kas 2026", 17, "text", 400, "end")
     s.close()
@@ -452,49 +663,54 @@ def analyzing(line_y):
 
 
 def new_items(s):
-    s.navbar("Yeni Malzemeler", "Kontrol et, gerekirse tarih ekle.")
-    s.header(208, "8 malzeme bulundu")
-    rows = [("Yumurta", "12 Kas"), ("Domates", "4 Kas"), ("Biber", ""), ("Soğan", ""),
-            ("Peynir", "20 Kas"), ("Patates", ""), ("Maydanoz", "")]
-    tops = s.group(220, [60] + [44] * len(rows), 32)
+    s.navbar("Yeni Malzemeler", "Kontrol et, tarihleri biz tahmin ettik.")
+    s.header(208, "8 malzeme bulundu", doodle="kasik", angle=30)
+    rows = [("Yumurta", "12 Kas"), ("Domates", "4 Kas"), ("Biber", "10 Kas"), ("Soğan", "1 Ara"),
+            ("Peynir", "20 Kas"), ("Patates", "25 Kas"), ("Maydanoz", "7 Kas")]
+    tops = s.group(220, [60] + [44] * len(rows), 70)
     s.open("satir-yogurt")
-    s.t(32, tops[0] + 26, "Yoğurt", 17)
-    s.t(32, tops[0] + 46, "Emin değiliz, kontrol et", 13, "text2")
+    s.r(GX, tops[0], GW, 60, None)
+    thumb(s, 28, tops[0] + 30, 30, "Yoğurt")
+    s.t(70, tops[0] + 26, "Yoğurt", 17)
+    s.t(70, tops[0] + 46, "Emin değiliz, kontrol et", 13, "text2")
     s.icon("questionmark.circle", 320, tops[0] + 30, "text2")
     s.close()
     for i, (name, date) in enumerate(rows):
         y = tops[i + 1]
         if name == "Domates":   # shown mid-swipe to document the delete action
             s.open(f"satir-{i + 2}")
-            s.t(32, y + 28, name, 17)
+            thumb(s, 28, y + 22, 30, name)
+            s.t(70, y + 28, name, 17)
             s.r(270, y, 74, 44, "red")
             s.t(307, y + 28, "Sil", 17, "on_red", 400, "middle")
             s.close()
         else:
-            value_row(s, y, name, date, f"satir-{i + 2}")
-    s.footer(tops[-1] + 68, ["Tarih eklemek için satıra dokun."])
+            value_row(s, y, name, date, f"satir-{i + 2}", h=44)
+    s.footer(tops[-1] + 68, ["Tarihler tahmini. Yanlışsa satıra dokunup düzelt."])
     s.prominent(666, "Dolaba Ekle", "btn-dolaba-ekle")
     s.home_indicator()
 
 
 def no_ingredients(s):
     s.navbar("Yeni Malzemeler")
-    s.unavailable(250, "magnifyingglass", "Malzeme Bulunamadı",
-                  ["Fotoğraf net değilse yeniden çek", "ya da malzemeleri kendin ekle."])
-    s.prominent(380, "Malzeme Ekle", "btn-malzeme-ekle")
-    s.plain(440, "Yeniden Çek", "btn-yeniden-cek")
+    s.unavailable(270, "magnifyingglass", "Malzeme Bulunamadı",
+                  ["Fotoğraf net değilse yeniden çek", "ya da malzemeleri kendin ekle."], "buyutec")
+    s.prominent(400, "Malzeme Ekle", "btn-malzeme-ekle")
+    s.plain(460, "Yeniden Çek", "btn-yeniden-cek")
     s.home_indicator()
 
 
 def prefs(s):
     sheet_base(s, "Tercihler")
     s.prominent_pill(W - M, 78, "Tarif Öner", "btn-tarif-oner")
-    s.header(158, "Süre")
+    s.header(158, "Süre", doodle="cay", angle=0)
     s.segmented(170, ["15 dk", "30 dk", "1 saat"], 1, "secim-sure")
     s.header(236, "Kişi sayısı")
     s.segmented(248, ["1", "2", "4", "6"], 1, "secim-kisi")
-    s.header(314, "Alerjiler")
-    tops = s.group(326, [44] * 4, 32, "sheet_cell")
+    s.header(314, "Eksik malzeme")
+    s.segmented(326, ["Olmasın", "En fazla 1", "Fark etmez"], 1, "secim-eksik")
+    s.header(392, "Alerjiler", doodle="dereotu")
+    tops = s.group(404, [44] * 4, 32, "sheet_cell")
     allergens = [("Gluten", "gluten", False), ("Süt", "sut", True), ("Yumurta", "yumurta", False),
                  ("Fındık", "findik", False)]
     for y, (name, key, on) in zip(tops, allergens):
@@ -503,53 +719,53 @@ def prefs(s):
         s.t(32, y + 28, name, 17)
         s.switch(277, y + 6.5, on)
         s.close()
-    s.footer(524, ["Önce bozulacak malzemeler kullanılır.", "Tarifler yapay zeka ile üretilir.",
+    s.footer(602, ["Önce bozulacak malzemeler kullanılır.", "Tarifler yapay zeka ile üretilir.",
                    "Alerjenleri yine de kontrol et."])
     s.home_indicator()
 
 
 def recipes(s):
-    s.navbar("Öneriler", "Önce bozulacaklara göre")
+    s.navbar("Öneriler", "Önce bozulacaklara göre", cover="kitap")
     rows = [("Menemen", "15 dk · 2 kişilik", "Domatesi değerlendirir", "satir-menemen", None),
             ("Cacık", "10 dk · 2 kişilik", "Yoğurdu değerlendirir", "satir-cacik", None),
             ("Patatesli Omlet", "20 dk · 2 kişilik", "Eksik: Tereyağı", "satir-omlet", "tarif-baslik")]
-    tops = s.group(196, [76] * 3, 100)
-    for y, (name, meta, note, id, tid) in zip(tops, rows):
+    for i, (name, meta, note, id, tid) in enumerate(rows):
+        y = 200 + i * 124
         s.open(id)
-        s.r(GX, y, GW, 76, None)
-        s.photo(32, y + 10, 56, 56, "1x1", 10)
-        s.t(100, y + 26, name, 17, "text", 600, id=tid)
-        s.t(100, y + 46, meta, 13, "text2")
-        s.t(100, y + 64, note, 13, "text2")
-        s.icon("chevron.forward", 322, y + 38, "gray3", 1, 2)
+        s.r(GX, y, GW, 112, "surface", 18)
+        s.photo(28, y + 8, 96, 96, "1x1", 12, NAME_TO_DISH.get(name))
+        s.t(138, y + 36, name, 17, "text", 600, id=tid)
+        s.t(138, y + 60, meta, 13, "text2")
+        s.t(138, y + 84, note, 13, "text2" if note.startswith("Eksik") else "accent")
+        s.icon("chevron.forward", 322, y + 56, "gray3", 1, 2)
         s.close()
-    s.plain(440, "Başka Tarifler Öner", "btn-baska-tarif")
+    s.plain(584, "Başka Tarifler Öner", "btn-baska-tarif")
     s.home_indicator()
 
 
 def recipes_loading(s):
-    s.navbar("Öneriler", "Önce bozulacaklara göre")
+    s.navbar("Öneriler", "Önce bozulacaklara göre", cover="kitap")
     s.spinner(W / 2, 330)
     s.t(W / 2, 372, "Tarifler hazırlanıyor…", 17, "text2", 400, "middle")
     s.home_indicator()
 
 
 def recipes_error(s):
-    s.navbar("Öneriler", "Önce bozulacaklara göre")
-    end = s.unavailable(270, "exclamationmark.triangle", "Tarifler Alınamadı",
-                        ["Bağlantını kontrol edip", "tekrar dene."])
+    s.navbar("Öneriler", "Önce bozulacaklara göre", cover="kitap")
+    end = s.unavailable(300, "exclamationmark.triangle", "Tarifler Alınamadı",
+                        ["Bağlantını kontrol edip", "tekrar dene."], "tencere")
     s.plain(end + 22, "Tekrar Dene", "btn-tekrar-dene", weight=600)
     s.home_indicator()
 
 
 def recipe_body(s):
-    s.photo(0, 0, W, 202, "16x9")
-    s.status()
+    s.photo(0, 0, W, 202, "16x9", dish="omlet")
+    s.status("text" if s.wire else "on_paint")  # the painting stays cream in dark mode
     s.glass_button(M, 58, "chevron.backward", "geri")
     s.glass_button(W - M - 44, 58, "bookmark", "btn-kaydet")
-    s.t(M, 250, "Patatesli Omlet", 34, "text", 700, id="tarif-baslik")
+    s.t(M, 250, "Patatesli Omlet", 34, "text", 700, id="tarif-baslik", family="Fraunces")
     s.t(M, 276, "20 dk · 2 kişilik", 17, "text2")
-    s.header(314, "Malzemeler")
+    s.header(314, "Malzemeler", doodle="maydanoz")
     tops = s.group(326, [44, 44], 32)
     s.t(32, tops[0] + 28, "Patates, yumurta, soğan, peynir", 17)
     s.t(32, tops[1] + 28, "Tereyağı (eksik)", 17)
@@ -557,13 +773,22 @@ def recipe_body(s):
     s.r(220, tops[1], 124, 44, None)
     s.t(328, tops[1] + 28, "Listeye Ekle", 17, "accent", 400, "end")
     s.close()
-    s.header(450, "Yapılışı")
+    s.header(450, "Yapılışı", "herb", doodle="cirpici", angle=24)
     steps = ["Patatesleri küp küp doğra.", "Tavada kızarana dek kavur.", "Soğanı ekleyip karıştır.",
              "Yumurtaları çırpıp dök.", "Peyniri ekle, 5 dk pişir."]
     tops = s.group(462, [44] * 5, 56)
     for i, (y, step) in enumerate(zip(tops, steps)):
-        s.t(32, y + 28, str(i + 1), 17, "text2")
-        s.t(56, y + 28, step, 17)
+        if s.wire:
+            s.t(32, y + 28, str(i + 1), 17, "text2")
+        else:
+            s.r(28, y + 9, 26, 26, ["tag_red", "tag_yellow", "tag_green"][i % 3], 13)
+            s.t(41, y + 30, str(i + 1), 20, ["accent", "tag_text_y", "herb"][i % 3], 700, "middle", family="Caveat")
+        s.t(64 if not s.wire else 56, y + 28, step, 17)
+        if i == len(steps) - 1:   # a step with a time gets a one-tap timer
+            s.open("btn-zamanlayici")
+            s.r(262, y, 82, 44, None)
+            s.tag(330, y + 22, "5 dk", ("tag_yellow", "tag_text_y"))
+            s.close()
 
 
 def recipe(s):
@@ -576,10 +801,15 @@ def cooked(s):
     s.r(0, 0, W, H, "dim")
     s.status()
     s.r(36, 278, 288, 212, "surface", 28, id="uyari")
-    s.t(W / 2, 318, "Afiyet olsun!", 17, "text", 600, "middle")
+    if not s.wire:
+        s.parts[-1] = s.parts[-1].replace('y="278"', 'y="190"').replace('height="212"', 'height="300"')
+        s.rects[-1] = (36, 190, 288, 300, s.c["surface"])
+        s.painting(132, 206, 96, 96, "s-tencere", 48)
+    s.t(W / 2, 318 + (10 if not s.wire else 0), "Afiyet olsun!", 22 if not s.wire else 17, "text", 700 if not s.wire else 600,
+        "middle", family="Fraunces")
     for i, line in enumerate(["Kullanılan malzemeler dolapta", "“Azaldı” olarak işaretlenecek.",
                               "Bitenler listeye eklenecek."]):
-        s.t(W / 2, 346 + i * 20, line, 15, "text2", 400, "middle")
+        s.t(W / 2, 350 + i * 20, line, 15, "text2", 400, "middle")
     s.open("btn-vazgec")
     s.r(52, 422, 124, 48, "fill", 24)
     s.t(114, 452, "Vazgeç", 17, "text", 400, "middle")
@@ -606,18 +836,27 @@ def saved(s):
     s.icon("magnifyingglass", 38, 178, "text2", 0.8)
     s.t(54, 184, "Ara", 17, "text2")
     s.close()
-    s.header(240, "Kayıtlı")
-    end = saved_rows(s, 252, [("Menemen", "15 dk · 2 kişilik", "satir-menemen"),
-                              ("Mercimek Çorbası", "30 dk · 4 kişilik", "satir-mercimek"),
-                              ("Patatesli Omlet", "20 dk · 2 kişilik", "satir-omlet"),
-                              ("Zeytinyağlı Fasulye", "40 dk · 4 kişilik", "satir-fasulye")])
-    s.footer(end + 24, ["Kayıtlı tarifler internet olmadan da açılır."])
+    s.header(240, "Kayıtlı", doodle="defne")
+    cards = [("Menemen", ["Menemen"], "15 dk · 2 kişilik", "satir-menemen"),
+             ("Mercimek Çorbası", ["Mercimek", "Çorbası"], "30 dk · 4 kişilik", "satir-mercimek"),
+             ("Patatesli Omlet", ["Patatesli", "Omlet"], "20 dk · 2 kişilik", "satir-omlet"),
+             ("Zeytinyağlı Fasulye", ["Zeytinyağlı", "Fasulye"], "40 dk · 4 kişilik", "satir-fasulye")]
+    for i, (name, lines, meta, id) in enumerate(cards):
+        x, y = GX + (i % 2) * 172, 256 + (i // 2) * 216
+        s.open(id)
+        s.r(x, y, 156, 204, "surface", 16)
+        s.photo(x + 10, y + 10, 136, 104, "1x1", 10, NAME_TO_DISH.get(name))
+        for j, line in enumerate(lines):
+            s.t(x + 12, y + 140 + j * 24, line, 17, "text", 600)
+        s.t(x + 12, y + 140 + len(lines) * 24, meta, 13, "text2")
+        s.close()
+    s.footer(694, ["Kayıtlı tarifler internet olmadan da açılır."])
     s.tabbar(1)
 
 
 def saved_empty(s):
     s.navbar("Tarifler", back=False)
-    s.unavailable(300, "book", "Kayıtlı Tarif Yok", ["Beğendiğin tarifi kaydet,", "internet olmadan da aç."])
+    s.unavailable(320, "book", "Kayıtlı Tarif Yok", ["Beğendiğin tarifi kaydet,", "internet olmadan da aç."], "defter")
     s.tabbar(1)
 
 
@@ -638,6 +877,7 @@ def shopping(s):
             s.circle(43, y + 30, 11, None, "control", 1.5)
         s.t(64, y + 27, name, 17, "text2" if done else "text")
         s.t(64, y + 46, who, 13, "text2")
+        thumb(s, 290, y + 30, 40, name)
         s.close()
     s.open("satir-urun-ekle")
     s.r(GX, tops[-1], GW, 44, None)
@@ -645,7 +885,7 @@ def shopping(s):
     s.t(64, tops[-1] + 28, "Ürün Ekle", 17, "accent")
     s.close()
     s.footer(504, ["Alındı işaretlenen ürünler dolaba eklenir."])
-    s.header(552, "Ev")
+    s.header(552, "Ev", doodle="cay", angle=0)
     t2 = s.group(564, [44, 44], 32)
     s.t(32, t2[0] + 28, "Davet kodu", 17)
     s.t(328, t2[0] + 28, "7KQ2MX", 17, "text2", 400, "end")
@@ -659,7 +899,7 @@ def shopping(s):
 def shopping_empty(s):
     s.navbar("Alışveriş Listesi", "Ev listesi · 2 üye", back=False,
              trailing=[("square.and.arrow.up", "btn-paylas")])
-    end = s.unavailable(300, "cart", "Liste Boş", ["Tariflerdeki eksikler ve biten", "ürünler buraya eklenir."])
+    end = s.unavailable(320, "cart", "Liste Boş", ["Tariflerdeki eksikler ve biten", "ürünler buraya eklenir."], "sepet")
     s.plain(end + 22, "Ürün Ekle", "btn-urun-ekle", weight=600)
     s.tabbar(2)
 
@@ -674,7 +914,7 @@ def offline(s):
     s.t(72, y + 69, "Tarif önerisi için internet gerekir.", 13, "text2")
     s.plain(292, "Tekrar Dene", "btn-tekrar-dene", weight=600)
     start = pantry_sections(s, 372, [("Yoğurt", "Yarın", "satir-yogurt"), ("Domates", "2 gün", "satir-domates")], None)
-    tops = s.group(start, [44] * 3, 32)
+    tops = s.group(start, [ROW] * 3, 76)
     for y, (name, state) in zip(tops, [("Yumurta", "Var"), ("Peynir", "Azaldı"), ("Patates", "Var")]):
         value_row(s, y, name, state, f"satir-{name.lower()}")
     s.tabbar(0)

@@ -26,8 +26,8 @@ OUT = BASE / "docs"
 OUT.mkdir(exist_ok=True)
 FONTS = BASE / "tools" / "fonts"
 
-MEMBER_1 = "[AD SOYAD 1]"
-MEMBER_2 = "[AD SOYAD 2]"
+MEMBER_1 = "Hatice Karakuş"
+MEMBER_2 = "Muhammed Ali Demirsoy"
 TEAM = f"{MEMBER_1}, {MEMBER_2}"
 TEAM_NO = "[TAKIM NO]"
 EVIDENCE = ("<b>[TO FILL: interview 5-10 people who cook at home, including people who share a flat. Write how "
@@ -110,93 +110,87 @@ class Swatch(Flowable):
         self.canv.roundRect(0, 0, 22, 11, 2, fill=1)
 
 
+pdfmetrics.registerFont(TTFont("Hand", str(FONTS / "PatrickHand-Regular.ttf")))
+pdfmetrics.registerFont(TTFont("Script", str(FONTS / "Caveat-Bold.ttf")))
+
+
 def design_justification():
     tokens = [
-        ("Grouped background", "bg", "Screen background behind lists"),
-        ("Cell", "surface", "List rows and fields"),
-        ("Label", "text", "Titles and body text"),
-        ("Secondary label", "text2", "Times, servings, hints"),
-        ("Separator", "sep", "Hairlines between rows"),
-        ("Accent (terracotta)", "accent", "Only on things you can tap"),
-        ("Destructive", "red", "Swipe-to-delete only"),
+        ("Paper", "bg", "Page background with faint ruled lines (#EADBC6)"),
+        ("Card", "surface", "Hand-drawn cards, fields and the tab bar"),
+        ("Ink", "text", "Text and the pen outline around cards and buttons"),
+        ("Pencil", "text2", "Times, servings, who added an item, hints"),
+        ("Terracotta", "accent", "Only things you can tap, and urgent expiry"),
+        ("Herb green", "herb", "The Dolapta header and the Var state"),
+        ("Tag red / green / yellow", "tag_red", "Backgrounds of Yarın, Var and Azaldı tags"),
     ]
     rows = [["", "Token", "Light", "Dark", "Use"]] + [
         [Swatch(LIGHT[k]), name, LIGHT[k], DARK[k], use] for name, k, use in tokens]
-    pairs = [("text", "bg", "Label on background"), ("text2", "bg", "Secondary label on background"),
-             ("text2", "surface", "Secondary label on a row"), ("accent", "surface", "Tappable text on a row"),
-             ("accent", "bg", "Tappable text on background"), ("on_accent", "accent", "Label on the filled button"),
-             ("accent", "tabsel", "Selected tab label"), ("on_red", "red", "Delete label on red")]
+    pairs = [("text", "bg", "Ink on paper"), ("text2", "surface", "Pencil text on a card"),
+             ("accent", "surface", "Tappable text on a card"), ("on_accent", "accent", "Label on the main button"),
+             ("accent", "tag_red", "Yarın tag"), ("herb", "tag_green", "Var tag"),
+             ("tag_text_y", "tag_yellow", "Azaldı tag")]
     check = [["Text / background", "Light", "Dark", "AA (4.5:1)"]]
     for fg, bg, use in pairs:
         lo, da = contrast(LIGHT[fg], LIGHT[bg]), contrast(DARK[fg], DARK[bg])
         check.append([use, f"{lo:.2f}:1", f"{da:.2f}:1", "Pass" if min(lo, da) >= 4.5 else "Fail"])
-    type_rows = [["iOS text style", "Size / weight", "Use in Dolaptan"],
-                 ["Large Title", "34 pt bold", "Screen titles"],
-                 ["Title 2", "22 pt bold", "Empty, error and offline states"],
-                 ["Headline", "17 pt semibold", "Section headers, recipe names"],
-                 ["Body", "17 pt regular", "Rows, steps, buttons"],
-                 ["Footnote", "13 pt regular", "Times, servings, list footers"]]
+    def sample(text, font, size):
+        style = ParagraphStyle(f"sample-{size}", parent=BODY, fontName=font, fontSize=size,
+                               leading=size * 1.2, spaceAfter=0)
+        return Paragraph(text, style)
+    type_rows = [["Role", "Font, size", "Sample", "Use"],
+                 ["Screen title", "Caveat Bold 44", sample("Dolap", "Script", 20), "Large titles"],
+                 ["Section header", "Caveat Bold 26", sample("Yakında bozulacak", "Script", 14), "With a brush underline"],
+                 ["Button, tag", "Caveat Bold 22", sample("Ne Pişirsem?", "Script", 13), "Short labels only"],
+                 ["Body", "Patrick Hand 18.7", sample("Yumurtaları çırpıp dök.", "Hand", 11), "Rows, steps, fields"],
+                 ["Small", "Patrick Hand 14.3", sample("15 dk · 2 kişilik", "Hand", 9), "Times, servings, hints"]]
     build("design-justification.pdf", header("Design Justification") + [
         P("<b>Dolaptan</b> is a shared kitchen for people who live together: one pantry everyone sees, Turkish "
-          "recipes that use what is about to go off, and a shared shopping list. People use it while tired, in a "
-          "hurry, or with one free hand in the kitchen. The design aims for few decisions, readable "
-          "text, and clear control over what the AI suggests. It follows Apple's Human Interface Guidelines for "
-          "iOS 26, so the app feels familiar to people who use Notes, Reminders or Health."),
-        Paragraph("Visual language", H2),
-        *bullets([
-            "<b>Standard iOS patterns:</b> large-title navigation bars, a floating tab bar with three tabs "
-            "(Dolap, Tarifler, Liste), inset grouped lists, a sheet for Preferences, segmented controls for time "
-            "and servings, switches for allergies, and swipe to delete.",
-            "<b>Rows instead of cards:</b> pantry items, recipes and list items are list rows, which are easier to "
-            "scan and edit than stacked cards.",
-            "<b>One emphasis per screen:</b> at most one filled button per screen (for example, Ne Pişirsem? or "
-            "Dolaba Ekle). Other actions are plain text buttons.",
-            "<b>Liquid Glass only for navigation:</b> following the HIG, the glass treatment is limited to the tab "
-            "bar and the bar buttons. Content stays on solid system backgrounds. There are no gradients, large "
-            "shadows or decorative shapes.",
-        ]),
+          "recipes that use what is about to go off, and a shared shopping list. The screens look like a "
+          "<b>hand-written family recipe notebook</b>: cream paper, pen outlines, hand-written titles and painted "
+          "food. Cooking at home is personal, and a notebook feels warmer and more inviting than a store app, "
+          "which matters for a habit people have to keep up every day. The structure underneath stays standard "
+          "iOS (large titles, a floating tab bar with three tabs, grouped lists, sheets, segmented controls and "
+          "switches), so the app is still quick to learn."),
         Paragraph("Color", H2),
-        P("Backgrounds are Apple's system colors. A single accent color, our terracotta, appears only on elements "
-          "you can tap, so color always means an action. For secondary text we use Apple's increased-contrast "
-          f"gray {LIGHT['text2']}, because the default gray #8E8E93 reaches only "
-          f"{contrast('#8E8E93', '#FFFFFF'):.2f}:1 on white. In Dark Mode the accent becomes lighter "
-          f"({DARK['accent']}) with a black label, because white on that color would fail AA."),
-        table(rows, [10, 36, 20, 20, 88]),
+        P("The paper color matches the cream background of our illustrations, so paintings sit on the page "
+          "without boxes. Terracotta appears only on things you can tap and on items that expire tomorrow, "
+          "so the warmest color always means act now. Pantry states are tags with both a word and a color: "
+          "Var green, Azaldı mustard, Yarın red. Dark Mode is a warm dark brown, not black, so the notebook "
+          "feel stays at night."),
+        table(rows, [10, 40, 18, 18, 88]),
         Spacer(1, 5),
-        P("Contrast uses the WCAG 2.2 formula: L = 0.2126 R + 0.7152 G + 0.0722 B on linearized channels, "
-          "ratio = (L1 + 0.05) / (L2 + 0.05). Every pair passes AA in both modes. The build script also checks "
-          "every text in every screen."),
+        P("Contrast uses the WCAG 2.2 formula on linearized channels, ratio = (L1 + 0.05) / (L2 + 0.05). Every "
+          "pair passes AA in both modes. The build script also checks every text on all 60 screens."),
         table(check, [80, 32, 32, 30]),
         Paragraph("Typography", H2),
-        P("The scale follows iOS Dynamic Type at the default size. On iOS the app uses the system font, SF Pro. "
-          "Mockups and the Android build use <b>Inter</b>. It is free, supports Turkish letters such as ğ, ı, İ "
-          "and ş, and looks close to SF Pro. Apple's SF Pro license allows it only for Apple platforms."),
-        table(type_rows, [44, 40, 90]),
-        Paragraph("Layout", H2),
+        P("Two free Google Fonts (SIL Open Font License) that include every Turkish letter (ğ, ı, İ, ş, ç). "
+          "<b>Caveat</b>, a pen script, is used only for short text such as titles, headers, buttons and tags, "
+          "where personality matters and words are few. Longer text uses <b>Patrick Hand</b>, which looks "
+          "hand-written but has print letter shapes, so recipe steps stay easy to read. Its letters are smaller "
+          "than Inter at the same size, so we set it 10% larger. The iOS status bar and the wireframes keep Inter."),
+        table(type_rows, [36, 38, 52, 48]),
+        Paragraph("Illustrations and layout", H2),
         *bullets([
-            "We keep the course frame of 360 x 800 pt, 16 pt side margins and an 8 pt rhythm.",
-            "Every tappable element is at least 44 x 44 pt. The build script measures this on every screen.",
-            "Content stays clear of the status bar and the home indicator. The tab bar floats 21 pt from the "
-            "edges.",
-            "Food photos get fixed spaces: 16:9 at the top of a recipe and 1:1 in list rows. Recipes are generated "
-            "as text, so the space stays empty and is hidden until a real photo exists. We do not use stock or "
-            "AI-generated images.",
-            "Icons follow SF Symbols. Each symbol name is listed in the Figma guide. In code we use the "
-            "MIT-licensed cupertino_icons font, which also works on Android.",
+            "All food art is gouache style: dishes, 12 ingredients, 6 scenes for empty states, 12 small doodles "
+            "(herbs, spoon, tea glass) and 6 vignettes. We generated them with Figma AI in batches with one "
+            "shared style prompt, then cut, cleaned and selected them by hand. We keep only art that shows "
+            "food accurately. Recipe pictures are illustrations, not photos, so nobody mistakes them for the "
+            "real result.",
+            "Cards, buttons and tags have a slightly uneven pen outline. Section headers have a brush underline "
+            "and a small doodle. Empty states show a taped-in picture with a short title, one sentence and one action.",
+            "Frame 360 x 800 pt, 16 pt margins, 28 pt ruled-line rhythm. Every tappable element is at least "
+            "44 x 44 pt, checked by the build script on every screen.",
         ]),
-        Paragraph("States and Dark Mode", H2),
-        P("Empty, error and loading states use the standard iOS empty-state pattern: one symbol, a short title, "
-          "one sentence and at most one action. Examples are an empty saved list, recipes that failed to load, "
-          "and a loading spinner while recipes are prepared. Every screen exists in light and dark versions with "
-          "its own color tokens, and both versions pass the same checks."),
         Paragraph("Accessibility and how the design supports users", H2),
         *bullets([
-            "Color is never the only signal: pantry states are words (Var, Azaldı, Bitti), checked items use a "
-            "filled circle with a check mark, and uncertain items have a symbol and a sentence.",
-            "The app will support Dynamic Type, and it will label icon buttons and the delete action for VoiceOver and TalkBack.",
-            "AI can make mistakes, so detected ingredients appear in an editable list before any recipe is "
-            "generated, and uncertain items are listed first. The allergen note stays under the allergy switches.",
-            "The pantry and saved recipes open offline, and a banner explains that recipe suggestions need internet.",
+            "Color is never the only signal: states are words, checked items get a check mark, and uncertain "
+            "scan results say \"Emin değiliz, kontrol et\".",
+            "Less typing, the main complaint about competing apps: photo scan, estimated expiry dates the user "
+            "only corrects, and Cooked / Bought update the pantry automatically.",
+            "Fewer surprises: a \"missing ingredients\" limit in Preferences, a timer on steps that need one, "
+            "and \"Hesapsız Dene\" to try the app before signing up.",
+            "Icon buttons will have VoiceOver and TalkBack labels, and text will follow the system size setting.",
         ]),
     ])
 
@@ -344,10 +338,10 @@ def user_flow():
 
     l1 = lane(1, "1  Add food to the shared pantry", [
         (0, "p", "Open app"), (1, "d", "Signed in?"), (2, "p", "Shared pantry"), (3, "d", "Online?"),
-        (4, "s", "Scan shelves"), (5, "d", "Items found?"), (6, "s", "Review items, add expiry dates"),
+        (4, "s", "Scan shelves"), (5, "d", "Items found?"), (6, "s", "Review items, check estimated dates"),
         (7, "a", "Saved to shared pantry"), (8, "a", "Expiry reminders scheduled")])
     chain(l1, {"1-1": "Yes", "1-3": "Yes", "1-5": "Yes"})
-    back_up(branch("1-1", 1, 1, "Log in or sign up"), "1-2")
+    back_up(branch("1-1", 1, 1, "Log in, sign up or try as guest"), "1-2")
     branch("1-3", 3, 1, "Offline: cached pantry, no AI")
     back_up(branch("1-5", 5, 1, "Type items by hand"), "1-6")
 
@@ -566,10 +560,9 @@ abstract class HouseholdRepository {
               [58, 116]),
         Spacer(1, 3),
         P("<b>Android:</b> SafeArea keeps content clear of the Android status and navigation bars, and the system "
-          "Back gesture pops the go_router stack. Inter is bundled as the app font, because Apple's SF Pro "
-          "license does not allow use on non-Apple systems. The cupertino_ui page does not mention Liquid Glass, "
-          "so bars use a plain translucent background. <b>[TO CHECK: Liquid Glass support in cupertino_ui "
-          "before week 11.]</b>"),
+          "Back gesture pops the go_router stack. The notebook fonts Patrick Hand and Caveat (SIL OFL) are "
+          "bundled, so text looks the same on both systems. Bars use the notebook paper and card colors instead of "
+          "Liquid Glass, so they look the same on iOS and Android."),
         Paragraph("3. Data model", H2),
         Preformatted("""Dart models
   PantryItem   id, name, state (have | low | out), expiresOn?, remind, addedBy, updatedAt

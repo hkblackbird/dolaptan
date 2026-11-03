@@ -7,9 +7,9 @@
 </g>
 <rect id="uyari" x="36" y="278" width="288" height="212" rx="28" fill="#FFFFFF"/>
 <text x="127.9" y="318" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Afiyet olsun!</text>
-<text x="74.3" y="346" font-family="Inter" font-size="15" font-weight="400" fill="#5E5E5E">Kullanılan malzemeler dolapta</text>
-<text x="76.2" y="366" font-family="Inter" font-size="15" font-weight="400" fill="#5E5E5E">“Azaldı” olarak işaretlenecek.</text>
-<text x="87.4" y="386" font-family="Inter" font-size="15" font-weight="400" fill="#5E5E5E">Bitenler listeye eklenecek.</text>
+<text x="74.3" y="350" font-family="Inter" font-size="15" font-weight="400" fill="#5E5E5E">Kullanılan malzemeler dolapta</text>
+<text x="76.2" y="370" font-family="Inter" font-size="15" font-weight="400" fill="#5E5E5E">“Azaldı” olarak işaretlenecek.</text>
+<text x="87.4" y="390" font-family="Inter" font-size="15" font-weight="400" fill="#5E5E5E">Bitenler listeye eklenecek.</text>
 <g id="btn-vazgec">
 <rect x="52" y="422" width="124" height="48" rx="24" fill="#E2E2E2"/>
 <text x="83.6" y="452" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Vazgeç</text>

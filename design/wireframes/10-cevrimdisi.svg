@@ -24,36 +24,46 @@
 <text x="129.4" y="320" font-family="Inter" font-size="17" font-weight="600" fill="#3A3A3A">Tekrar Dene</text>
 </g>
 <text x="20.0" y="372" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Yakında bozulacak</text>
-<rect x="16" y="384" width="328" height="88" rx="20" fill="#FFFFFF"/>
-<rect x="32" y="427.5" width="312" height="0.5" rx="0" fill="#C8C8C8"/>
+<rect x="16" y="384" width="328" height="104" rx="20" fill="#FFFFFF"/>
+<rect x="76" y="435.5" width="268" height="0.5" rx="0" fill="#C8C8C8"/>
 <g id="satir-yogurt">
-<rect x="16" y="384" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
-<text x="32.0" y="412.0" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Yoğurt</text>
-<text x="286.4" y="412.0" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Yarın</text>
+<rect x="16" y="384" width="328" height="52" rx="0" fill="#000000" fill-opacity="0"/>
+<rect x="28" y="392.0" width="36" height="36" rx="18.0" fill="#DADADA"/>
+<text x="76.0" y="416.0" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Yoğurt</text>
+<rect x="271.6" y="397.0" width="58.4" height="26" rx="13" fill="#E2E2E2"/>
+<text x="281.6" y="415.5" font-family="Inter" font-size="15" font-weight="600" fill="#3A3A3A">Yarın</text>
 </g>
 <g id="satir-domates">
-<rect x="16" y="428" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
-<text x="32.0" y="456.0" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Domates</text>
-<text x="282.3" y="456.0" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">2 gün</text>
+<rect x="16" y="436" width="328" height="52" rx="0" fill="#000000" fill-opacity="0"/>
+<rect x="28" y="444.0" width="36" height="36" rx="18.0" fill="#DADADA"/>
+<text x="76.0" y="468.0" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Domates</text>
+<rect x="269.1" y="449.0" width="60.9" height="26" rx="13" fill="#E2E2E2"/>
+<text x="279.1" y="467.5" font-family="Inter" font-size="15" font-weight="600" fill="#3A3A3A">2 gün</text>
 </g>
-<text x="20.0" y="508" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Dolapta</text>
-<rect x="16" y="520" width="328" height="132" rx="20" fill="#FFFFFF"/>
-<rect x="32" y="563.5" width="312" height="0.5" rx="0" fill="#C8C8C8"/>
-<rect x="32" y="607.5" width="312" height="0.5" rx="0" fill="#C8C8C8"/>
+<text x="20.0" y="524" font-family="Inter" font-size="17" font-weight="600" fill="#1A1A1A">Dolapta</text>
+<rect x="16" y="536" width="328" height="156" rx="20" fill="#FFFFFF"/>
+<rect x="76" y="587.5" width="268" height="0.5" rx="0" fill="#C8C8C8"/>
+<rect x="76" y="639.5" width="268" height="0.5" rx="0" fill="#C8C8C8"/>
 <g id="satir-yumurta">
-<rect x="16" y="520" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
-<text x="32.0" y="548.0" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Yumurta</text>
-<text x="300.3" y="548.0" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Var</text>
+<rect x="16" y="536" width="328" height="52" rx="0" fill="#000000" fill-opacity="0"/>
+<rect x="28" y="544.0" width="36" height="36" rx="18.0" fill="#DADADA"/>
+<text x="76.0" y="568.0" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Yumurta</text>
+<rect x="284.5" y="549.0" width="45.5" height="26" rx="13" fill="#E2E2E2"/>
+<text x="294.5" y="567.5" font-family="Inter" font-size="15" font-weight="600" fill="#3A3A3A">Var</text>
 </g>
 <g id="satir-peynir">
-<rect x="16" y="564" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
-<text x="32.0" y="592.0" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Peynir</text>
-<text x="278.7" y="592.0" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Azaldı</text>
+<rect x="16" y="588" width="328" height="52" rx="0" fill="#000000" fill-opacity="0"/>
+<rect x="28" y="596.0" width="36" height="36" rx="18.0" fill="#DADADA"/>
+<text x="76.0" y="620.0" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Peynir</text>
+<rect x="264.8" y="601.0" width="65.2" height="26" rx="13" fill="#E2E2E2"/>
+<text x="274.8" y="619.5" font-family="Inter" font-size="15" font-weight="600" fill="#3A3A3A">Azaldı</text>
 </g>
 <g id="satir-patates">
-<rect x="16" y="608" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>
-<text x="32.0" y="636.0" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Patates</text>
-<text x="300.3" y="636.0" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Var</text>
+<rect x="16" y="640" width="328" height="52" rx="0" fill="#000000" fill-opacity="0"/>
+<rect x="28" y="648.0" width="36" height="36" rx="18.0" fill="#DADADA"/>
+<text x="76.0" y="672.0" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Patates</text>
+<rect x="284.5" y="653.0" width="45.5" height="26" rx="13" fill="#E2E2E2"/>
+<text x="294.5" y="671.5" font-family="Inter" font-size="15" font-weight="600" fill="#3A3A3A">Var</text>
 </g>
 <g id="sekme-cubugu">
 <rect x="21" y="717" width="318" height="62" rx="31" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="0.5"/>

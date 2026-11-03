@@ -10,13 +10,13 @@
 </g>
 <text x="16.0" y="142" font-family="Inter" font-size="34" font-weight="700" fill="#1A1A1A">Öneriler</text>
 <text x="16.0" y="170" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Önce bozulacaklara göre</text>
-<g id="sf-exclamationmark.triangle" transform="translate(180.0 270) scale(2.0)"><path d="M0 -10 L11 9 H-11 Z M0 -3 V3" fill="none" stroke="#5E5E5E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="6" r="1.4" fill="#5E5E5E"/></g>
-<text x="84.1" y="322" font-family="Inter" font-size="22" font-weight="700" fill="#1A1A1A">Tarifler Alınamadı</text>
-<text x="90.6" y="350" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Bağlantını kontrol edip</text>
-<text x="131.4" y="372" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">tekrar dene.</text>
+<g id="sf-exclamationmark.triangle" transform="translate(180.0 300) scale(2.0)"><path d="M0 -10 L11 9 H-11 Z M0 -3 V3" fill="none" stroke="#5E5E5E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="6" r="1.4" fill="#5E5E5E"/></g>
+<text x="84.1" y="352" font-family="Inter" font-size="22" font-weight="700" fill="#1A1A1A">Tarifler Alınamadı</text>
+<text x="90.6" y="380" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Bağlantını kontrol edip</text>
+<text x="131.4" y="402" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">tekrar dene.</text>
 <g id="btn-tekrar-dene">
-<rect x="113.4" y="394" width="133.3" height="44" rx="22" fill="#000000" fill-opacity="0"/>
-<text x="129.4" y="422" font-family="Inter" font-size="17" font-weight="600" fill="#3A3A3A">Tekrar Dene</text>
+<rect x="113.4" y="424" width="133.3" height="44" rx="22" fill="#000000" fill-opacity="0"/>
+<text x="129.4" y="452" font-family="Inter" font-size="17" font-weight="600" fill="#3A3A3A">Tekrar Dene</text>
 </g>
 <rect id="ana-ekran-cubugu" x="113" y="787" width="134" height="5" rx="2.5" fill="#1A1A1A"/>
 </svg>

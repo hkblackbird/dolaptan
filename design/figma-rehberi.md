@@ -133,21 +133,16 @@ Bir bileşeni değiştirmek için:
 - Kitin iPhone çerçeveleri 360x800 değil, daha büyük olabilir. Biz dersin istediği 360x800 boyutunu koruduk. Bileşenler genişliğe göre esner; ekleyince sağ ve sol kenarlarını çerçeveye sabitle.
 - Tab Bar'ı kitten koyunca etiketleri `Dolap`, `Tarifler`, `Liste` yap ve seçili sekmeyi ekrana göre ayarla.
 
-## 4. Fotoğraf alanları
+## 4. Yemek çizimleri
 
-Yemek fotoğrafları için boş alanlar bırakıldı. İçlerine görsel koymadım, çünkü uydurma veya yapay görsel kullanmıyoruz.
+Tarif görselleri, renkli zemin üstünde yukarıdan bakan düz (flat) çizimlerdir. Fotoğraf kullanmıyoruz.
 
 | Katman | Oran | Nerede |
 |---|---|---|
-| `foto-alani-16x9` | 16:9 | 07-tarif-detay, en üst |
-| `foto-alani-1x1` | 1:1 | 06 ve 08'deki tarif satırları |
+| `foto-alani-16x9` + `cizim-omlet` | 16:9 | 07-tarif-detay, en üst |
+| `foto-alani-1x1` + `cizim-<yemek>` | 1:1 | 06 ve 08'deki tarif satırları |
 
-Kendi çektiğiniz gerçek bir fotoğraf varsa:
-
-1. Alanı seç.
-2. **Fill → Image** ile fotoğrafı yükle ve **Fill** modunu seç.
-
-Fotoğraf yoksa alanı olduğu gibi bırak. Uygulamada fotoğrafı olmayan tarifte bu alan gizlenir.
+Çizimler `tools/illustrations.py` içinde: menemen, cacık, omlet, mercimek çorbası, fasulye. Her çizim ayrı bir grup olduğu için Figma'da renkleri tek tek değiştirilebilir. Uygulamada aynı çizimler SVG dosyası olarak `flutter_svg` ile gösterilir.
 
 ## 5. İkonlar (SF Symbols)
 
@@ -215,6 +210,7 @@ iOS'taki temel geçişleri kullan. Tabloda aksi yazmadıkça tetikleyici **On ta
 |---|---|---|
 | `btn-giris` | 02-dolap | Fade |
 | `btn-hesap-olustur` | 02-dolap | Fade |
+| `btn-hesapsiz` | 02-dolap | Fade |
 
 ### 02-dolap
 

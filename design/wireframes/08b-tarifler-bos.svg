@@ -5,10 +5,10 @@
 <rect x="268.0" y="31" width="3" height="3" rx="0.8" fill="#1A1A1A"/><rect x="272.5" y="29" width="3" height="5" rx="0.8" fill="#1A1A1A"/><rect x="277.0" y="27" width="3" height="7" rx="0.8" fill="#1A1A1A"/><rect x="281.5" y="25" width="3" height="9" rx="0.8" fill="#1A1A1A"/><path d="M292 28 Q299.5 21 307 28 M295 31 Q299.5 27 304 31" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/><circle cx="299.5" cy="34" r="1.5" fill="#1A1A1A"/><rect x="312" y="26" width="23" height="11" rx="3" fill="none" stroke="#1A1A1A" stroke-opacity="0.45"/><rect x="314" y="28" width="17" height="7" rx="1.5" fill="#1A1A1A"/><rect x="336" y="29.5" width="1.6" height="4" rx="0.8" fill="#1A1A1A" fill-opacity="0.45"/>
 </g>
 <text x="16.0" y="142" font-family="Inter" font-size="34" font-weight="700" fill="#1A1A1A">Tarifler</text>
-<g id="sf-book" transform="translate(180.0 300) scale(2.0)"><path d="M0 -6 Q-5 -9 -10 -8 V8 Q-5 7 0 10 Q5 7 10 8 V-8 Q5 -9 0 -6 Z M0 -6 V10" fill="none" stroke="#5E5E5E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></g>
-<text x="94.2" y="352" font-family="Inter" font-size="22" font-weight="700" fill="#1A1A1A">Kayıtlı Tarif Yok</text>
-<text x="82.3" y="380" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Beğendiğin tarifi kaydet,</text>
-<text x="85.6" y="402" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">internet olmadan da aç.</text>
+<g id="sf-book" transform="translate(180.0 320) scale(2.0)"><path d="M0 -6 Q-5 -9 -10 -8 V8 Q-5 7 0 10 Q5 7 10 8 V-8 Q5 -9 0 -6 Z M0 -6 V10" fill="none" stroke="#5E5E5E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="94.2" y="372" font-family="Inter" font-size="22" font-weight="700" fill="#1A1A1A">Kayıtlı Tarif Yok</text>
+<text x="82.3" y="400" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Beğendiğin tarifi kaydet,</text>
+<text x="85.6" y="422" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">internet olmadan da aç.</text>
 <g id="sekme-cubugu">
 <rect x="21" y="717" width="318" height="62" rx="31" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="0.5"/>
 </g>

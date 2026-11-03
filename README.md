@@ -7,13 +7,14 @@ MTM4681 Mobile Programming, Fall 2026. Milestone submission.
 ## Team
 
 - Team number: [TAKIM NO]
-- Members: [AD SOYAD 1], [AD SOYAD 2]
+- Members: Hatice Karakuş, Muhammed Ali Demirsoy
 
 ## Figma
 
-- Wireframes: [FIGMA WIREFRAME LİNKİ]
-- Mockups: [FIGMA MOCKUP LİNKİ]
-- Prototype: [FIGMA PROTOTİP LİNKİ]
+- Wireframes: https://www.figma.com/design/ks28fOM7jsorGfZoWvIGpD/Dolaptan?node-id=0-1
+- Mockups: https://www.figma.com/design/ks28fOM7jsorGfZoWvIGpD/Dolaptan?node-id=5-1061
+- Mockups, dark mode: https://www.figma.com/design/ks28fOM7jsorGfZoWvIGpD/Dolaptan?node-id=5-2141
+- Prototype: https://www.figma.com/proto/ks28fOM7jsorGfZoWvIGpD/Dolaptan?node-id=19-362&starting-point-node-id=19%3A362
 
 ## Files
 
@@ -31,14 +32,16 @@ MTM4681 Mobile Programming, Fall 2026. Milestone submission.
 | `tools/build_screens.py` | Generates the SVG screens |
 | `tools/build_docs.py` | Generates the PDFs |
 | `tools/build_figma_plugin.py` | Generates the Figma plugin from the SVGs and the guide |
-| `tools/fonts/` | Inter font files and license |
+| `tools/fonts/` | Inter, Caveat and Patrick Hand font files and licenses (SIL OFL) |
+| `design/cizimler/` | Gouache illustrations (Figma AI generated sheets in `setler/`, cut-outs in `web/`) |
+| `app/` | Flutter app (MVVM + Provider, go_router, Hive). Works offline with an on-device Turkish recipe catalog; Firebase and AI come next |
 
-Each folder has the 10 main screens, 3 extra states (expiry notification, edit item sheet, Cooked confirmation), 2 Scan states for the animation, and 5 empty, error and loading states. The visual language follows Apple's iOS 26 guidelines.
+Each folder has the 10 main screens, 3 extra states (expiry notification, edit item sheet, Cooked confirmation), 2 Scan states for the animation, and 5 empty, error and loading states. The visual language is a hand-written recipe notebook (cream paper, Caveat and Patrick Hand fonts, gouache food illustrations) on top of standard iOS patterns.
 
 ## Rebuild
 
 ```sh
-pip install reportlab fonttools
+pip install reportlab fonttools pillow
 python tools/build_screens.py
 python tools/build_docs.py
 python tools/build_figma_plugin.py

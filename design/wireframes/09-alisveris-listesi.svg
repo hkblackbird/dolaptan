@@ -20,18 +20,21 @@
 <circle cx="43" cy="226" r="11" fill="none" stroke="#5E5E5E" stroke-width="1.5"/>
 <text x="64.0" y="223" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Tereyağı</text>
 <text x="64.0" y="242" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Sen ekledin</text>
+<rect x="290" y="206.0" width="40" height="40" rx="20.0" fill="#DADADA"/>
 </g>
 <g id="satir-2">
 <rect x="16" y="256" width="328" height="60" rx="0" fill="#000000" fill-opacity="0"/>
 <circle cx="43" cy="286" r="11" fill="none" stroke="#5E5E5E" stroke-width="1.5"/>
 <text x="64.0" y="283" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Salatalık</text>
 <text x="64.0" y="302" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Ayşe ekledi</text>
+<rect x="290" y="266.0" width="40" height="40" rx="20.0" fill="#DADADA"/>
 </g>
 <g id="satir-3">
 <rect x="16" y="316" width="328" height="60" rx="0" fill="#000000" fill-opacity="0"/>
 <circle cx="43" cy="346" r="11" fill="none" stroke="#5E5E5E" stroke-width="1.5"/>
 <text x="64.0" y="343" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Ekmek</text>
 <text x="64.0" y="362" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Ayşe ekledi</text>
+<rect x="290" y="326.0" width="40" height="40" rx="20.0" fill="#DADADA"/>
 </g>
 <g id="satir-4">
 <rect x="16" y="376" width="328" height="60" rx="0" fill="#000000" fill-opacity="0"/>
@@ -39,6 +42,7 @@
 <path d="M38 406 L42 410 L48 402" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64.0" y="403" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">Süt</text>
 <text x="64.0" y="422" font-family="Inter" font-size="13" font-weight="400" fill="#5E5E5E">Alındı · dolaba eklendi</text>
+<rect x="290" y="386.0" width="40" height="40" rx="20.0" fill="#DADADA"/>
 </g>
 <g id="satir-urun-ekle">
 <rect x="16" y="436" width="328" height="44" rx="0" fill="#000000" fill-opacity="0"/>

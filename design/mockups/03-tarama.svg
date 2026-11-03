@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="360" height="800" viewBox="0 0 360 800">
-<rect x="0" y="0" width="360" height="800" rx="0" fill="#F2F2F7"/>
+<rect x="0" y="0" width="360" height="800" rx="0" fill="#F7EBDD"/>
+<g id="defter-cizgileri"><line x1="0" y1="196" x2="360" y2="196" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="224" x2="360" y2="224" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="252" x2="360" y2="252" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="280" x2="360" y2="280" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="308" x2="360" y2="308" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="336" x2="360" y2="336" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="364" x2="360" y2="364" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="392" x2="360" y2="392" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="420" x2="360" y2="420" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="448" x2="360" y2="448" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="476" x2="360" y2="476" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="504" x2="360" y2="504" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="532" x2="360" y2="532" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="560" x2="360" y2="560" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="588" x2="360" y2="588" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="616" x2="360" y2="616" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="644" x2="360" y2="644" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="672" x2="360" y2="672" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="700" x2="360" y2="700" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="728" x2="360" y2="728" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="756" x2="360" y2="756" stroke="#EADBC6" stroke-width="1"/><line x1="0" y1="784" x2="360" y2="784" stroke="#EADBC6" stroke-width="1"/></g>
 <rect x="0" y="0" width="360" height="800" rx="0" fill="#000000"/>
 <g id="durum-cubugu">
 <text x="41.6" y="37" font-family="Inter" font-size="16" font-weight="600" fill="#FFFFFF">9:41</text>
@@ -7,18 +8,18 @@
 </g>
 <rect id="kamera-onizleme" x="0" y="110" width="360" height="480" rx="0" fill="#1C1C1E"/>
 <g id="btn-kapat">
-<rect x="16" y="58" width="44" height="44" rx="22" fill="#3A3A3C"/>
+<path d="M38.0 58.8 L38.0 58.4 L38.0 58.0 Q60.2 58.7 60.1 80.0 L59.6 80.0 L60.2 80.0 Q60.3 102.2 38.0 102.9 L38.0 102.8 L38.0 102.2 Q16.1 101.3 15.8 80.0 L16.6 80.0 L15.2 80.0 Q15.3 58.1 38.0 57.4Z" fill="#3A3A3C" stroke="#2B1D14" stroke-opacity="0.55" stroke-width="1.2" stroke-linejoin="round"/>
 <g id="sf-xmark" transform="translate(38 80) scale(1.0)"><path d="M-6 -6 L6 6 M6 -6 L-6 6" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
 </g>
-<text x="129.1" y="622" font-family="Inter" font-size="13" font-weight="400" fill="#FFFFFF">Rafları kadraja al</text>
+<text x="135.7" y="622" font-family="Patrick Hand" font-size="14.3" font-weight="400" fill="#FFFFFF">Rafları kadraja al</text>
 <g id="btn-galeri">
-<rect x="40" y="678" width="44" height="44" rx="10" fill="#3A3A3C"/>
+<path d="M50.0 678.6 L62.0 678.7 L74.0 677.8 Q83.9 678.2 84.1 688.0 L83.2 700.0 L84.7 712.0 Q83.4 721.6 74.0 722.6 L62.0 721.6 L50.0 722.1 Q39.8 722.8 39.5 712.0 L40.1 700.0 L39.8 688.0 Q39.2 678.5 50.0 677.1Z" fill="#3A3A3C" stroke="#2B1D14" stroke-opacity="0.55" stroke-width="1.2" stroke-linejoin="round"/>
 <g id="sf-photo.on.rectangle" transform="translate(62 700) scale(1.0)"><path d="M-7 -9 H10 V4 M-10 -6 H7 V8 H-10 Z M-10 6 L-4 0 L1 5 L3 3 L7 7" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
 </g>
 <g id="btn-deklansor">
 <rect x="143" y="663" width="74" height="74" rx="37" fill="#000000" fill-opacity="0"/>
-<circle cx="180" cy="700" r="35" fill="none" stroke="#FFFFFF" stroke-width="4"/>
-<circle cx="180" cy="700" r="29" fill="#FFFFFF"/>
+<path d="M211.2 689.9 Q214.6 700.0 211.2 710.1 Q207.9 720.3 199.3 726.7 Q190.8 733.2 180.0 733.1 Q169.3 733.0 160.3 726.9 Q151.4 720.8 148.0 710.4 Q144.6 700.0 148.2 689.8 Q151.9 679.6 160.6 673.4 Q169.3 667.2 180.1 667.0 Q190.8 666.8 199.4 673.2 Q207.9 679.7 211.2 689.9Z" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+<path d="M206.3 691.4 Q208.9 700.0 206.4 708.7 Q203.9 717.4 196.5 722.5 Q189.0 727.7 180.0 727.8 Q171.0 727.8 163.7 722.4 Q156.5 717.1 154.0 708.5 Q151.4 700.0 153.8 691.4 Q156.2 682.7 163.6 677.4 Q170.9 672.0 179.9 672.4 Q188.9 672.8 196.2 677.8 Q203.6 682.8 206.3 691.4Z" fill="#FFFFFF"/>
 </g>
 <rect id="ana-ekran-cubugu" x="113" y="787" width="134" height="5" rx="2.5" fill="#FFFFFF"/>
 </svg>

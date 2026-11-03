@@ -41,6 +41,11 @@
 <text x="56.0" y="622" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Yumurtaları çırpıp dök.</text>
 <text x="32.0" y="666" font-family="Inter" font-size="17" font-weight="400" fill="#5E5E5E">5</text>
 <text x="56.0" y="666" font-family="Inter" font-size="17" font-weight="400" fill="#1A1A1A">Peyniri ekle, 5 dk pişir.</text>
+<g id="btn-zamanlayici">
+<rect x="262" y="638" width="82" height="44" rx="0" fill="#000000" fill-opacity="0"/>
+<rect x="279.1" y="647" width="50.9" height="26" rx="13" fill="#E2E2E2"/>
+<text x="289.1" y="665.5" font-family="Inter" font-size="15" font-weight="600" fill="#3A3A3A">5 dk</text>
+</g>
 <g id="btn-pisirdim">
 <rect x="16" y="704" width="328" height="50" rx="25" fill="#3A3A3A"/>
 <text x="146.8" y="735" font-family="Inter" font-size="17" font-weight="600" fill="#FFFFFF">Pişirdim</text>
